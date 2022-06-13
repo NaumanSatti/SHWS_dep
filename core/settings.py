@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-=dcc-i=21%h)xa(cd6lc=xcaum^=0&)+0f&v4iay#hfev*yx@#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','shws.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','sindhhc.herokuapp.com']
 
 
 # Application definition
@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE'  : 'django.db.backends.mysql', 
-        'NAME'    : 'shws',                 # <-- update here with your db name
-        'USER'    : 'root',                     # <-- update here with your username
-        'PASSWORD': 'nomi1122',              # <-- update here with your password
-        'HOST'    : 'localhost',                
+        'NAME'    : 'heroku_c0d9e7733313cbc',                 # <-- update here with your db name
+        'USER'    : 'b3ffacf6e656f0',                     # <-- update here with your username
+        'PASSWORD': '07a68d9d',              # <-- update here with your password
+        'HOST'    : 'us-cdbr-east-05.cleardb.net',                
         'PORT'    : '3306',
     }
 }
