@@ -1,0 +1,160 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %} Data Entry {%endblock%}
+
+{% block extrastyle %}
+<style>
+  .float-right{
+    float: right;
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <div class="row">
+
+        <div class="col-sm-10">
+          <h1>My Reports</h1>
+            <nav>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                <li class="breadcrumb-item"><a href="profile">Profile</a></li>
+                <li class="breadcrumb-item">ID: {{user_id}}</li>
+                <li class="breadcrumb-item active">My Reports</li>
+              </ol>
+            </nav>
+        </div>
+        
+        <div class="col-sm-2">
+          <button onclick="openPage();"  id="reset" class="btn btn-primary float-right" >Add Reports</button>
+         
+          <script>
+            function openPage(){ window.location='report'; }
+            var reportDone='{{rep}}'
+            
+            if (reportDone== 1){
+              document.getElementById("reset").disabled = true;
+            }
+            else{
+              document.getElementById("reset").disabled = false;
+            }
+          </script>
+        </div>
+      </div>
+      
+     
+    
+      
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+  
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Report Tables</h5>
+                <p>This table shows all the report that are posted from your side</p>
+
+                <!-- success message  -->
+                {% if messages %}
+                <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                   {% for message in messages %}
+                   {{ message }}
+                   {% endfor %}
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+                <!-- success message -->
+  
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Report ID</th>
+                      <th scope="col">Date Submitted</th>
+                      <th scope="col">Submitted By</th>
+                      <th scope="col">Report District</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for report in reports %}
+                    <tr>
+                      <td>{{report.id}}</td>
+                      <td>{{report.datesubmitted}}</td>
+                      <td>{{report.user}}</td>
+                      <td>{{report.district}}</td>
+                      <td>
+                        
+                        <a href="{% url 'delete-report' report.pk %}" type="button" id="A_{{forloop.counter}}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                        
+
+                        <a href="{% url 'edit-report' report.pk %}" type="button" id="B_{{forloop.counter}}" class="btn btn-success"><i class="bi bi-pen"></i></a>
+                        <script>
+                          
+                        var XYZ='{{rep}}'  
+                        if (XYZ=='1'){
+                        var a='{{total}}';
+                        console.log(typeof(a));
+                        var b= parseInt(a);
+                        console.log(typeof(b));
+                        for(var x=1; x<=b; x++)
+                        {
+                          let text1 = "A_";
+                          y=x.toString();
+
+                          let result = text1.concat(y);
+                          console.log(result)
+
+                          document.getElementById(result).style.display = "none";
+
+                        }
+
+                        for(var x2=1; x2<=b; x2++)
+                        {
+                          let text1 = "B_";
+                          y=x2.toString();
+
+                          let result2 = text1.concat(y);
+                          console.log(result2)
+
+                          document.getElementById(result2).style.display = "none";
+
+                        }
+                      }
+                      </script>
+        
+        
+                      
+                       
+                        <a href="{% url 'view-report' report.pk %}" type="button" class="btn btn-success"><i class="bi bi-eye"></i></a>
+                        
+                      </td>
+                    </tr>
+                    
+                    
+                    {% endfor %}
+                   
+                  </tbody>
+                </table>
+                
+                
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </section>
+   
+
+  </main>
+{% endblock %}
+{% block extrascripts %}
+
+
+{% endblock %}

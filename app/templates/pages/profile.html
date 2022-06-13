@@ -1,0 +1,149 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block content %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Profile</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item">Users</li>
+          <li class="breadcrumb-item">ID: {{user_id}}</li>
+          <li class="breadcrumb-item active">Profile</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    {% if success %}
+          <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+            {{ success }}
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endif %}
+    <section class="section profile">
+      <div class="row">
+        <div class="col-xl-4">
+
+          
+          <!-- success message -->
+          <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+              {% if healthworker.thumbnail %}
+              <img src="uploads/{{healthworker.thumbnail}}" alt="Profile" class="rounded-circle">
+              {% else %}
+              <img src="uploads/profile-img.jpg" alt="Profile" class="rounded-circle">
+              {% endif %}
+              <h2>{{healthworker.name}}</h2>
+              <h3>{{healthworker.code}}</h3>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="d-grid gap-2 mt-3 mb-3">
+                <a class="btn btn-primary" type="button" href="/report">LHW MIS</a>
+              </div>
+          </div>
+
+        </div>
+
+        <div class="col-xl-8">
+
+          <div class="card">
+            <div class="card-body pt-3">
+            
+              
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                    <!-- <h5 class="card-title">About</h5>
+                    <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p> -->
+  
+                    <h5 class="card-title">Profile Details</h5>
+  
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label ">LHW Code</div>
+                      <div class="col-lg-9 col-md-8">{{healthworker.code}}</div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">LHW Name</div>
+                      <div class="col-lg-9 col-md-8">{{healthworker.name}}</div>
+                    </div>
+                   
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">LHW CNIC</div>
+                      <div class="col-lg-9 col-md-8">{{healthworker.cnic}}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">LHW Email</div>
+                      <div class="col-lg-9 col-md-8">{{user.email}}</div>
+                    </div>
+  
+  
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">LHW Father/Husband Name</div>
+                      <div class="col-lg-9 col-md-8">{{healthworker.father_or_husband_name}}</div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">LHW Attached Facility</div>
+                      <div class="col-lg-9 col-md-8">{{ healthworker.attached_facility}}</div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">LHW Union Council</div>
+                      <div class="col-lg-9 col-md-8">{{healthworker.union_council}}</div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">LHW Tehsil</div>
+                      <div class="col-lg-9 col-md-8">{{healthworker.tehsil}}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 label">LHW District</div>
+                        <div class="col-lg-9 col-md-8">{{healthworker.district}}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Catchment Population of FLCF</div>
+                        <div class="col-lg-9 col-md-8">{{healthworker.catchment_of_population_of_flcf}}</div>
+                    </div>
+                      
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Popultaion Registered by LHWs</div>
+                        <div class="col-lg-9 col-md-8">{{healthworker.population_registered_by_lhws}}</div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">Date Joined</div>
+                      <div class="col-lg-9 col-md-8">{{user.date_joined}}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Is Health Worker Admin?</div>
+                    <div class="col-lg-9 col-md-8">{{user.is_superuser}}</div>
+                </div>
+                  
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Is Health Worker Active?</div>
+                    <div class="col-lg-9 col-md-8">{{user.is_active}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Last Login</div>
+                  <div class="col-lg-9 col-md-8">{{user.last_login}}</div>
+              
+          
+
+                    
+  
+                  </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+{% endblock %}

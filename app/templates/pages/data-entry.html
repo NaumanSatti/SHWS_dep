@@ -1,0 +1,1367 @@
+{% extends 'layouts/base.html' %}
+{% block title %} Data Entry {%endblock%}
+{% block extrastyle %} 
+{% block extrastylesheet %}
+{% load static %}
+<style>
+  #datesubmitted {
+    font-size: 18px;
+    font-weight: 500;
+    color: #012970;
+    font-family: "Poppins", sans-serif;
+  }
+  
+</style>
+{% endblock %}{% endblock %}
+
+{% block content %}
+<body onload="showAlert()">
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Data Entry</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+          <li class="breadcrumb-item"><a href="profile">Profile</a></li>
+          <li class="breadcrumb-item active">Data Entry</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+
+    <section class="section">
+        <form method="post">
+          {% csrf_token %}
+        
+        <div class="row">
+          <div class="col-lg-12">
+  
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">LHWS Data Entry System</h5>
+                
+                <!-- success message  -->
+                {% if success %}
+                <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                  {{ success }}
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+                <!-- success message -->
+
+                <!-- Accordion without outline borders -->
+                <div class="accordion accordion-flush" id="accordionFlushExample" >
+                  <div class="accordion-item" data-accordionlevel="1">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                      <button class="accordion-button collapsed card-title" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        1. Basic Information
+                      </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">
+                        <!-- start of first form -->
+                            <div class="row mb-3">
+                              <label for="inputText" class="col-sm-4 col-form-label">Is Health Committees Formulated</label>
+                              <div class="col-sm-8">
+                                <select name="isheathcommittesformulated" class="form-select" aria-label="Default select example">
+                                    <option>Choose</option>
+                                    <option value="yes">Yes</option>
+                                    <option selected value="no">No</option>
+                                
+                                </select>
+                              </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-4 col-form-label">Is Women Support Groups Formulated</label>
+                                <div class="col-sm-8">
+                                  <select name="iswomensupportgroupformulated" class="form-select" aria-label="Default select example">
+                                      <option>Choose</option>
+                                      <option value="yes">Yes</option>
+                                      <option selected value="no">No</option>
+                                  
+                                  </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                              <label for="inputPassword" class="col-sm-4 col-form-label">Household Registered by LHWs</label>
+                              <div class="col-sm-8">
+                                <input name="householdregisteredbyhw" type="number" min="0" selected value=1 class="form-control">
+                              </div>
+                            </div>
+
+                            <div class="row mb-3">
+                              <label for="inputNumber" class="col-sm-4 col-form-label">Household using Iodine salt</label>
+                              <div class="col-sm-8">
+                                <input name="householdusingiodine" type="number" min="0" selected value=1 class="form-control">
+                              </div>
+                            </div>
+                 
+        
+                       <!-- end of first form -->
+
+                       <!-- start of household with source of drinking card -->
+                       <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title"></h5>
+            
+                          <!-- Default Accordion -->
+                          <div class="accordion" id="accordionExample">
+                            <div class="accordion-item" data-accordionsublevel="1">
+                              <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button card-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapseinnerOne" aria-expanded="true" aria-controls="collapseinnerOne">
+                                    Household with Source of Drinking Water
+                                </button>
+                              </h2>
+                              <div id="collapseinnerOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row mb-3">
+                                        <label for="inputPassword" class="col-sm-3 col-form-label">Tap(Public Health Engineering)</label>
+                                        <div class="col-sm-3">
+                                            <input name="tap" aria-labelledby="sourceofdrinkingwater" type="number" min="0" selected value=1 class="form-control">
+                                        </div>
+
+                                        <label for="inputPassword" class="col-sm-3 col-form-label">Spring/Canal</label>
+                                        <div class="col-sm-3">
+                                            <input name="canal" aria-labelledby="sourceofdrinkingwater" type="number" min="0" selected value=1 class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="inputPassword" class="col-sm-3 col-form-label">Other</label>
+                                        <div class="col-sm-3">
+                                            <input name="otherdrinkingsource" aria-labelledby="sourceofdrinkingwater" type="number" min="0" selected value=1 class="form-control">
+                                        </div>
+
+                                        <label for="inputPassword" class="col-sm-3 col-form-label">Hand Pump / Motor Pump</label>
+                                        <div class="col-sm-3">
+                                            <input name="handpump" aria-labelledby="sourceofdrinkingwater" type="number" min="0" selected value=1 class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="inputPassword" class="col-sm-3 col-form-label">Well</label>
+                                        <div class="col-sm-3">
+                                            <input name="well" aria-labelledby="sourceofdrinkingwater" type="number" min="0" selected value=1 class="form-control">
+                                        </div>
+
+                                        <label for="inputPassword" class="col-sm-3 col-form-label">Total</label>
+                                        <div class="col-sm-3">
+                                            <input readonly name="totalhouseholdwithdrinkingwatersource" data-drinkingwatersourcetotal type="number" min="0" class="form-control">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                              </div>
+                            </div>
+                            
+                          </div>
+            
+                        </div>
+                      </div>
+                      <!-- end of household with source of drinking water -->
+
+                      <!-- start of sewerage system-->
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title"></h5>
+            
+                          <!-- Default Accordion -->
+                          <div class="accordion" id="accordionExample">
+                            <div class="accordion-item" data-accordionsublevel="1">
+                              <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button card-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapseinnerTwo" aria-expanded="true" aria-controls="collapseinnerOne">
+                                    Sewerage Sysyem
+                                </button>
+                              </h2>
+                              <div id="collapseinnerTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row mb-3">
+                                        <label for="inputPassword" class="col-sm-3 col-form-label">Pit</label>
+                                        <div class="col-sm-3">
+                                            <input name="pit" aria-labelledby="seweragesystem" type="number" min="0" selected value=1 class="form-control">
+                                        </div>
+
+                                        <label for="inputPassword" class="col-sm-3 col-form-label">Flush System</label>
+                                        <div class="col-sm-3">
+                                            <input  name="flush" aria-labelledby="seweragesystem"  type="number" min="0" selected value=1 class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="inputPassword" class="col-sm-3 col-form-label">Open Fields</label>
+                                        <div class="col-sm-3">
+                                            <input name="openfields" aria-labelledby="seweragesystem"  type="number" min="0" selected value=1 class="form-control">
+                                        </div>
+
+                                        <label for="inputPassword" class="col-sm-3 col-form-label">Total</label>
+                                        <div class="col-sm-3">
+                                            <input readonly name="total" data-seweragetotal type="number" min="0"  class="form-control">
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                          </div>
+            
+                        </div>
+                      </div>
+                      <!-- end of sewerage system -->
+
+                      <!-- end of inner card in general information -->
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-sm-10">
+                          <button type="next" id="alpha" disabled=true class="btn btn-primary">Next</button>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <script>
+                      
+                      var A='{{rep}}'
+                      var B='{{name}}'
+                      var C='{{x}}'
+                      
+                      var message= "Hello Dear "+B+" You can not enter more than one report for the month of "+C;
+                      var b=parseInt(A)
+                      if(A==1){
+                       
+                       function showAlert() {
+                       alert (message);
+                      }
+                      document.getElementById("alpha").style.display="none"
+                    }
+                    </script>
+
+                    
+
+                  </div>
+                  <!-- end of general information -->
+
+                  <div class="accordion-item" data-accordionlevel="2">
+                    <h2 class="accordion-header" id="flush-headingTwo">
+                      <button class="accordion-button collapsed card-title" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        2. Social Contacts
+                      </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Helath Committee Meetings</label>
+                          <div class="col-sm-8">
+                            <input name="noofhealthcommitteemeeting" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No Of Women Support Group Meetings</label>
+                          <div class="col-sm-8">
+                            <input name="noofwomensupportgroupmeeting" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Health Education Sessions Held in School
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="noofhealtheducationsessionsheld" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <!-- next button -->
+                        <div class="row mb-3">
+                          <div class="col-sm-10">
+                            <button type="next" class="btn btn-primary">Next</button>
+                          </div>
+                        </div>
+                        <!-- next button -->
+                        
+                      </div>
+                    </div>
+                  
+                    
+                  
+                  </div>
+                  <!-- end of socail contacts -->
+
+                  <div class="accordion-item" data-accordionlevel="3">
+                    <h2 class="accordion-header" id="flush-headingThree" >
+                      <button class="accordion-button collapsed card-title" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        3. Child Health
+                      </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse show" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of New Borns Weighted (Within One Week After Birth)
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="noofnewbornsweighted" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Low Birth Weight Babies
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="nooflowbirthweighted" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of New Born Started Breast Feeding within 1 Hour
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="noofnewbirthstartedbreastfeeding" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of New Born Applied Chlorxidine (CHX) on umbilical cord
+                            within 24 Hours
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="noofnewbornappliedchx" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Newborn whose Immunization has started
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="noofnewbornimmunestarted" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of &lt;6 Months old children
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="sixmontholdchildren" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of &lt;6 Months old Children having Exclusive Breast Feeding
+
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="sixmontholdchildrenhavingbreastfeed" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of 6-59 Months old children
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="sixtofiveninemonthchildren" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of 6-59 Months children whose MAUC done
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="sixtofiveninechildrenhavingmaucdone" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of 6-59 Months Children Malnutrition (11.5cm to 12.5cm
+                            MAUC)
+                            
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="malnutritionchildren" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of 6-59 Months Children Malnutrition (less than 11.5cm
+                            MAUC)
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="sixtofiveninemalnutritionchildren" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of 12-23 Months old children
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="twelvetotwentythreemonthchildren" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of 12-23 Months old children Fully immunized
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="twelvetotwentythreechildrenfullyimmunized" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of &lt;5 Years children
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="lessthanfiveyearchildren" type="number" min="0"  selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of &lt;5 Years Children Provided Micro Nutrition Sachet
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="lessthanfiveyearchildrenprovidedsachet" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of &lt;5 Years Children whose GM done & Recorded
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="lessthanfiveyearchildrengmdone" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of &lt;5 Years Children with Low weight
+
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="lessthanfiveyearchildrenlowweight" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                          <!-- next button -->
+                          <div class="row mb-3">
+                            <div class="col-sm-10">
+                              <button type="next" class="btn btn-primary">Next</button>
+                            </div>
+                          </div>
+                          <!-- next button -->
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end of child Health -->
+
+                  <div class="accordion-item" data-accordionlevel="4">
+                    <h2 class="accordion-header" id="flush-headingFour">
+                      <button class="accordion-button collapsed card-title" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseThree">
+                        4. Mother Health
+                      </button>
+                    </h2>
+                    <div id="flush-collapseFour" class="accordion-collapse collapse show" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No. of newly registered pregnant Women
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="noofpregnantwomen" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">Total Pregnant Women (New+ Follow up)
+
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="totalpregnantwomen" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">Total Pregnant Women visited (New + Followup)
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="totalpregnantwomenvisited" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Pregnant and Breastfeeding Women whose MAUC is done
+
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="noofpregnantandbreastfeddingwomen" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Pregnant and Breastfeeding Maulnutrition Women
+                            (&lt;21cm MAUC)
+                            
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="malnutritionpregnantwomen" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No. of Pregnant women supplied Iron tablets
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="ironsuppliedpregnantwomen"  type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No. of Abortions (pregnancy less Than 7 Months)
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="noofabortions" type="number" min="0"  selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">Total No of Deliveries
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="totalofdeliveries" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Women Delivered who provided Tab Misoprostol after
+                            Delivery
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="womendeliveredtabprovided" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Women Delivered having 4 or >4 ANC Visits by SBAs (Dr,
+                            Nurse, LHV, Midwife/CMW)
+                            
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="womendeliveredancvisits" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Women Delivered With TT completed Before Delivery
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="womendeliveredwithttcompleted" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No Of Deliveries by Skilled Birth Attendants (Dr, Nurse, LHV,
+                            Midwife/CMW)
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="deliveredbyskilledattendants" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No. of Post-natal Cases Visited within 24 Hours
+
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="postnatalcasevisited" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <!-- next button -->
+                        <div class="row mb-3">
+                          <div class="col-sm-10">
+                            <button type="next" class="btn btn-primary">Next</button>
+                          </div>
+                        </div>
+                        <!-- next button -->
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end of Mother Health -->
+
+                  <div class="accordion-item" data-accordionlevel="5">
+                    <h2 class="accordion-header" id="flush-headingThree">
+                      <button class="accordion-button collapsed card-title" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseThree">
+                        5. Family Planning
+                      </button>
+                    </h2>
+                    <div id="flush-collapseFive" class="accordion-collapse collapse show" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Eligible Couples (Age of Wife between 15-49 Years)
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="eligiblecouples" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of New Client of Family Planning (Modern + Traditional)
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="newfamilyplanningclients" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">
+                            No of Follow-up Cases for Family Planning (Modern + Traditional)
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="followupcasesforfamilyplanning" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">Total No of Traditional Method Users
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="traditionalmethodusers" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">Total No of Modern Contraceptive Method Users
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="modernmethodusers" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Condom Users
+
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="condomusers" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Oral Pills Users
+
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="oralpillusers" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of COC Users
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="cocusers" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of ECP Users
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="ecpusers" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Injectable Contraceptive Users
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="contraceptiveusers" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">2-Month Injection
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="twomonthinjection" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">3-Month Injection
+
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="threemonthinjection" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of IUCD Client
+
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="iucdclient" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Surgical Clients
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="surgicalclient" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Other Modern Contraceptive Method Users
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="othermoderncontraceptiveusers" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Family Planning Clients referred
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="clientsreferred" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Clients Supplied condoms
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="suppliedwithcondoms" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Clients Supplied Oral pills
+
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="suppliedwithoral" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Clients administered Injectable Contraceptives
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="administeredwithinjectablecontraceptive" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        <!-- next button -->
+                        <div class="row mb-3">
+                          <div class="col-sm-10">
+                            <button type="next" class="btn btn-primary">Next</button>
+                          </div>
+                        </div>
+                        <!-- next button -->
+
+
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end of Family Planning -->
+
+                  <div class="accordion-item" data-accordionlevel="6">
+                    <h2 class="accordion-header" id="flush-headingThree">
+                      <button class="accordion-button collapsed card-title" type="button" data-bs-target="#flush-collapseSix" data-bs-toggle="collapse"  aria-expanded="false" aria-controls="flush-collapseThree">
+                        6. Common Ailments
+                      </button>
+                    </h2>
+                    <div id="flush-collapseSix" class="accordion-collapse collapse show" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">
+                        
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Cases of Diarrhoea
+
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="diarrhoea" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Cases of ARI
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="ari" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Cases of Fever
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="fever" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Cases of Injuries/burns
+
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="injuries" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Cases of Anaemia
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="anameia" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Cases of Scabies
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="scabies" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Cases of Eye Infections
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="eyeinfection" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Cases of reproductive tract infections
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="tractinfection" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Cases of Worm
+                            Infestation
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="worminfection" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Cases of Malaria
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="malaria" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Suspected Cases of TB
+
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="tbcases" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Suspected Fistula Cases
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="fistulacases" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Sustected Hepatitas
+                            Cases
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="hepatitas" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">Others
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="otherdiseases" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Referral Cases to
+                            Health Facility / Hospital
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="referalcasestohealthfacility" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Followup Cases
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="followupcases" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <!-- next button -->
+                        <div class="row mb-3">
+                          <div class="col-sm-10">
+                            <button type="next" class="btn btn-primary">Next</button>
+                          </div>
+                        </div>
+                        <!-- next button -->
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- common Ailments -->
+
+                  <div class="accordion-item" data-accordionlevel="7">
+                    <h2 class="accordion-header" id="flush-headingThree">
+                      <button class="accordion-button collapsed card-title" type="button" data-bs-target="#flush-collapseSeven" data-bs-toggle="collapse"  aria-expanded="false" aria-controls="flush-collapseThree">
+                        7. Births / Deaths
+                      </button>
+                    </h2>
+                    <div id="flush-collapseSeven" class="accordion-collapse collapse show" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Live Births
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="livebirths"  type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Still Births (Pregnancy More than 07 Months)
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="stillbirths" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of All Deaths
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="alldeaths" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of new-natal Deaths (Within 1 Week of Birth)
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="newnataldeaths" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Infant Deaths (Age More than 1 Week but Less than 1
+                            Month)
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="deathmorethanoneweek" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Infant Deaths (Age More than 1 Month but Less than 1
+                            Year)
+                            
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="infantsdeaths"  type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-3"> 
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Children Deaths (Age More than 1 Year but Less than 05
+                            Years)
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="deathsofchildren" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Maternal Deaths
+
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="maternaldeaths" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        <!-- next button -->
+                        <div class="row mb-3">
+                          <div class="col-sm-10">
+                            <button type="next" class="btn btn-primary">Next</button>
+                          </div>
+                        </div>
+                        <!-- next button -->
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end of Births/ Deaths -->
+
+                  <div class="accordion-item" data-accordionlevel="8">
+                    <h2 class="accordion-header" id="flush-headingThree" >
+                      <button class="accordion-button collapsed card-title" type="button" data-bs-target="#flush-collapseEight" data-bs-toggle="collapse"  aria-expanded="false" aria-controls="flush-collapseThree">
+                        8. Miscellanous
+                      </button>
+                    </h2>
+                    <div id="flush-collapseEight" class="accordion-collapse collapse show" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">
+                        <!-- Bordered Table -->
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th scope="col mx-auto">Name</th>
+                              <th scope="col mx-auto">Available</th>
+                              <th scope="col mx-auto">Functional</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">LHW Kit Bag</th>
+                              <td>
+                                <select name="kitbagavailability" class="form-select" aria-label="Default select example">
+                                  <option selected value="Not Available">Not Available</option>
+                                  <option value="Available">Available</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select name="kitbagfunctional" class="form-select" aria-label="Default select example">
+                                  <option selected value="Non Functional">Non Functional</option>
+                                  <option value="Functional">Functional</option>
+                                </select>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <th scope="row">Weighing Machine</th>
+                              <td>
+                                <select name="weighingmachineavailability" class="form-select" aria-label="Default select example">
+                                  <option selected value="Not Available">Not Available</option>
+                                  <option value="Available">Available</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select name="weighingmachinefunction" class="form-select" aria-label="Default select example">
+                                  <option selected value="Non Functional">Non Functional</option>
+                                  <option value="Functional">Functional</option>
+                                </select>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <th scope="row">Thermometer</th>
+                              <td>
+                                <select name="thermometeravailable" class="form-select" aria-label="Default select example">
+                                  <option selected value="Not Available">Not Available</option>
+                                  <option value="Available">Available</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select name="thermometerfunction" class="form-select" aria-label="Default select example">
+                                  <option selected value="Non Functional">Non Functional</option>
+                                  <option value="Functional">Functional</option>
+                                </select>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <th scope="row">Torch with cell</th>
+                              <td>
+                                <select name="torchavailable" class="form-select" aria-label="Default select example">
+                                  <option selected value="Not Available">Not Available</option>
+                                  <option value="Available">Available</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select name="torchfunction" class="form-select" aria-label="Default select example">
+                                  <option selected value="Non Functional">Non Functional</option>
+                                  <option value="Functional">Functional</option>
+                                </select>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <th scope="row">Scissors</th>
+                              <td>
+                                <select name="scissorsavailable" class="form-select" aria-label="Default select example">
+                                  <option selected value="Not Available">Not Available</option>
+                                  <option value="Available">Available</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select name="scissorsfunction" class="form-select" aria-label="Default select example">
+                                  <option selected value="Non Functional">Non Functional</option>
+                                  <option value="Functional">Functional</option>
+                                </select>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <th scope="row">HealthHouse Board</th>
+                              <td>
+                                <select name="healthboardavailable" class="form-select" aria-label="Default select example">
+                                  <option selected value="Not Available">Not Available</option>
+                                  <option value="Available">Available</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select name="healtboardfunction" class="form-select" aria-label="Default select example">
+                                  <option selected value="Non Functional">Non Functional</option>
+                                  <option value="Functional">Functional</option>
+                                </select>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <th scope="row">Blood Pressure Checker</th>
+                              <td>
+                                <select name="bloodpressureavailable" class="form-select" aria-label="Default select example">
+                                  <option selected value="Not Available">Not Available</option>
+                                  <option value="Available">Available</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select name="bloodpressurefunction" class="form-select" aria-label="Default select example">
+                                  <option selected value="Non Functional">Non Functional</option>
+                                  <option value="Functional">Functional</option>
+                                </select>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <th scope="row">Stethoscope</th>
+                              <td>
+                                <select name="stethoscopeavailable" class="form-select" aria-label="Default select example">
+                                  <option selected value="Not Available">Not Available</option>
+                                  <option value="Available">Available</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select name="stethoscopefunction" class="form-select" aria-label="Default select example">
+                                  <option selected value="Non Functional">Non Functional</option>
+                                  <option value="Functional">Functional</option>
+                                </select>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <th scope="row">MAUC Tap for Child</th>
+                              <td>
+                                <select name="maucforchildrenavailable" class="form-select" aria-label="Default select example">
+                                  <option selected value="Not Available">Not Available</option>
+                                  <option value="Available">Available</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select name="maucforchildrenfunction" class="form-select" aria-label="Default select example">
+                                  <option selected value="Non Functional">Non Functional</option>
+                                  <option value="Functional">Functional</option>
+                                </select>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <th scope="row">MAUC Tap for Mother</th>
+                              <td>
+                                <select name="maucformotheravailable" class="form-select" aria-label="Default select example">
+                                  <option selected value="Not Available">Not Available</option>
+                                  <option value="Available">Available</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select name="maucformotherfunction" class="form-select" aria-label="Default select example">
+                                  <option selected value="Non Functional">Non Functional</option>
+                                  <option value="Functional">Functional</option>
+                                </select>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <th scope="row">ARI Timer</th>
+                              <td>
+                                <select name="aritimeravailable" class="form-select" aria-label="Default select example">
+                                  <option selected value="Not Available">Not Available</option>
+                                  <option value="Available">Available</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select name="aritimerfunction" class="form-select" aria-label="Default select example">
+                                  <option selected value="Non Functional">Non Functional</option>
+                                  <option value="Functional">Functional</option>
+                                </select>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <th scope="row">Others</th>
+                              <td>
+                                <select name="otheravailable" class="form-select" aria-label="Default select example">
+                                  <option selected value="Not Available">Not Available</option>
+                                  <option value="Available">Available</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select name="otherfunction" class="form-select" aria-label="Default select example">
+                                  <option selected value="Non Functional">Non Functional</option>
+                                  <option value="Functional">Functional</option>
+                                </select>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!-- End Bordered Table -->
+
+                        <!-- next button -->
+                        <div class="row mb-3">
+                          <div class="col-sm-10">
+                            <button type="next" class="btn btn-primary">Next</button>
+                          </div>
+                        </div>
+                        <!-- next button -->
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end of miscellanous -->
+
+                  <div class="accordion-item" data-accordionlevel="9">
+                    <h2 class="accordion-header" id="flush-headingThree">
+                      <button class="accordion-button collapsed card-title" type="button" data-bs-target="#flush-collapseNine" data-bs-toggle="collapse"  aria-expanded="false" aria-controls="flush-collapseThree">
+                        9. Supervision
+                      </button>
+                    </h2>
+                    <div id="flush-collapseNine" class="accordion-collapse collapse show" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">
+
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of visits by LHS
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="visitsbylhs" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Visit by DCO (NP)
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="visitsbydco" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Visit by ADC (NP)
+
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="visitsbyadc" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No of Visit by FPO
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="visitsbyfpo" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                          <label for="inputText" class="col-sm-4 col-form-label">No # of Visit by PPIU
+                          </label>
+                          <div class="col-sm-8">
+                            <input name="visitsbyppiu" type="number" min="0" selected value=1 class="form-control">
+                          </div>
+                        </div>
+
+                        <!-- next button -->
+                        <div class="row mb-3">
+                          <div class="col-sm-10">
+                            <button type="next" class="btn btn-primary">Next</button>
+                          </div>
+                        </div>
+                        <!-- next button -->
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end of supervision -->
+
+                  <div class="accordion-item" data-accordionlevel="10">
+                    <h2 class="accordion-header" id="flush-headingThree">
+                      <button class="accordion-button collapsed card-title" type="button" data-bs-target="#flush-collapseTen" data-bs-toggle="collapse"  aria-expanded="false" aria-controls="flush-collapseThree">
+                        10. Comments
+                      </button>
+                    </h2>
+                    <div id="flush-collapseTen" class="accordion-collapse collapse show" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">
+                        <div class="row mb-3">
+                          <!-- <label for="inputText" class="col-sm-4 col-form-label">
+                          </label> -->
+                          <div class="col-sm-12">
+                            <textarea name="comments" type="text" class="form-control" rows="4" cols="5">Hello this is my report submission for the month of {{x}}</textarea>
+                          </div>
+                        </div>
+
+                        <!-- next button -->
+                        <div class="row mb-3">
+                          <div class="col-sm-10">
+                            <button type="next" class="btn btn-primary">Next</button>
+                          </div>
+                        </div>
+                        <!-- next button -->
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end of comments -->
+
+                </div><!-- End Accordion without outline borders -->
+
+                <!-- start of date submmited -->
+                <div class="row mb-3" data-datefield>
+                  <label class="col-sm-3 col-form-label" id="datesubmitted">Date Submitted</label>
+                  <div class="col-sm-9">
+                    <input name="datesubmitted" type="date" id="datePicker" readonly class="form-control">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  
+                  <div class="col-sm-10">
+                    <button type="submit" href='/' class="btn btn-primary">Submit Form</button>
+                  </div>
+                </div>
+  
+              </div>
+              <!-- end of card body -->
+
+
+              
+
+
+            </div>
+            <!-- end of card -->
+  
+          </div>
+        </div>
+      </section>
+      </form>
+
+  </main>
+  </body>
+{% endblock %}
+{% block extrascripts %}
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'assets/js/data-entry.js' %}"></script>
+
+{% endblock %}

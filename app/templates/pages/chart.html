@@ -1,0 +1,237 @@
+  
+<div class="card">
+    
+  <div class="row">
+  
+    <div class="col-sm-6">
+    <div class="card-body">
+      
+    {{MMR}}
+    <h5 class="card-title">Infant Mortality Rate (IMR)</h5>
+
+      
+      <!-- Bar Chart -->
+      <div id="line-adwords" class=""></div>
+
+      
+      <!-- End Bar Chart -->
+    </div>
+    </div>
+
+  
+    <div class="col-sm-6">
+    <div class="card-body">
+        <h5 class="card-title">Maternal Mortality Rate (IMR)</h5>
+  
+    
+  
+        <!-- Bar Chart -->
+        <div id="line" class=""></div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+  
+
+     
+      <!-- End Bar Chart -->
+      
+      
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+
+
+document.addEventListener("DOMContentLoaded", () => {
+                    new ApexCharts(document.querySelector("#line-adwords"), {
+                      chart: {
+  height: 328,
+  width:'100%',
+  type: 'line',
+  zoom: {
+    enabled: false
+  },
+  dropShadow: {
+    enabled: true,
+    top: 3,
+    left: 2,
+    blur: 4,
+    opacity: 1,
+  }
+},
+stroke: {
+  curve: 'smooth',
+  width: 2
+},
+//colors: ["#3F51B5", '#2196F3'],
+series: [{
+    name: "Infant Death",
+    data: {{infants_deaths}}
+  },
+  {
+    name: "Live Birth",
+    data:{{no_of_live_births}}
+  },
+  {
+    name: "IMR",
+    data: {{imr}}
+  }
+],
+title: {
+  text: 'Infant Mortality Rate',
+  align: 'left',
+  offsetY: 25,
+  offsetX: 20
+},
+subtitle: {
+  text: 'Statistics',
+  offsetY: 55,
+  offsetX: 20
+},
+markers: {
+  size: 6,
+  strokeWidth: 0,
+  hover: {
+    size: 9
+  }
+},
+grid: {
+  show: true,
+  padding: {
+    bottom: 0
+  }
+},
+
+xaxis: {
+    categories: {{districts_list|safe}},
+    title: {
+          text: 'Districts'
+        },
+  tooltip: {
+    enabled: false
+  }
+},
+legend: {
+  position: 'top',
+  horizontalAlign: 'right',
+  offsetY: -20
+}
+                    }).render();
+                  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+                 new ApexCharts(document.querySelector("#line"), {
+                   chart: {
+height: 328,
+width:'100%',
+type: 'line',
+zoom: {
+ enabled: false
+},
+dropShadow: {
+ enabled: true,
+ top: 3,
+ left: 2,
+ blur: 4,
+ opacity: 1,
+}
+},
+stroke: {
+curve: 'smooth',
+width: 2
+},
+colors: ["#3F51B5", '#2196F3',"#FF1654", "#247BA0"],
+series: [{
+ name: "Maternal Deaths",
+ data: {{maternal_deaths}}
+},
+{
+ name: "Live Birth",
+ data:{{no_of_live_births}}
+},
+{
+ name: "MMR",
+ data: {{mmr}}
+}
+],
+title: {
+text: 'Maternal Mortality Rate',
+align: 'left',
+offsetY: 25,
+offsetX: 20
+},
+subtitle: {
+text: 'Statistics',
+offsetY: 55,
+offsetX: 20
+},
+markers: {
+size: 6,
+strokeWidth: 0,
+hover: {
+ size: 9
+}
+},
+grid: {
+show: true,
+padding: {
+ bottom: 0
+}
+},
+
+xaxis: {
+ categories: {{districts_list|safe}},
+ title: {
+       text: 'Districts'
+     },
+tooltip: {
+ enabled: false
+}
+},
+legend: {
+position: 'top',
+horizontalAlign: 'right',
+offsetY: -20
+}
+   }).render();
+               });
+   </script>

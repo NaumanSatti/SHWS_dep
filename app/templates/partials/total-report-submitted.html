@@ -1,0 +1,43 @@
+<div class="card" style="    height:450px; overflow-y: scroll;">
+    <div class="card-body" >
+      <h5 class="card-title">Total Reports</h5>
+
+      <!-- Bar Chart -->
+      <div id="barChart"></div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          new ApexCharts(document.querySelector("#barChart"), {
+            series: [{
+              data: [
+              {% for each in total_district_reports %}
+                  '{{each.reportCount }}',
+                {% endfor %}
+              ], color:'#b06ab3'
+            }],
+            chart: {
+              toolbar : {
+                show :false,
+              },
+              type: 'bar',
+              height: 700
+            },
+            plotOptions: {
+              bar: {
+                borderRadius: 4,
+                horizontal: true,
+              }
+            },
+            dataLabels: {
+              enabled: false
+            },
+            xaxis: {
+              categories:{{districts_list|safe}},
+            }
+          }).render();
+        });
+      </script>
+      <!-- End Bar Chart -->
+
+    </div>
+  </div>

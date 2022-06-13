@@ -1,0 +1,154 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+
+{% block title %} Data Entry {%endblock%}
+
+{% block extrastyle %}
+<style>
+    .form-group{
+        margin-bottom:2px;
+    }
+
+    form:first-child {
+        display: none;
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Edit Report</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+          <li class="breadcrumb-item"><a href="my_reports">My Reports</a></li>
+          <li class="breadcrumb-item active">Edit Report</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+  
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Edit Form</h5>
+              
+
+                <form method="post">
+                {% csrf_token %}
+
+                {% for hidden_field in form.hidden_fields %}
+                    {{ hidden_field }}
+                {% endfor %}
+
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% for field in form.visible_fields %}
+                    <div class="row mb-3">
+                      
+                        
+                        {{ field.label_tag }}
+
+                          {% if form.is_bound %}
+                              {% if field.errors %}
+                              {% render_field field class="form-control col-sm-8 is-invalid" %}
+                              {% for error in field.errors %}
+                                  <div class="invalid-feedback">
+                                  {{ error }}
+                                  </div>
+                              {% endfor %}
+                              {% else %}
+                              {% render_field field class="form-control col-sm-8 is-valid" %}
+                              {% endif %}
+                          {% else %}
+                              <div class="col-sm-6">
+                              {% render_field field class="form-control" %}
+                              </div>
+                          {% endif %}
+
+                          {% if field.help_text %}
+                              <small class="form-text text-muted">{{ field.help_text }}</small>
+                          {% endif %}
+
+                    
+                    
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </section>
+   
+
+  </main>
+{% endblock %}
+{% block extrascripts %}
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+<script>
+  $(function(){
+    $('input[type=number').attr("min",0);
+
+    //  check if input type number has negative or not
+    $('input[type=number]').each(function(){
+        var element = $(this);
+        element.keyup(function(){
+            if (element.val() < 0){
+                element.val('')
+                alert('Value cannot be entered in negative')
+            }
+        })
+    })
+
+    // to add class to model form
+    $('label').addClass('col-sm-6 col-form-label');
+    
+    $('input[aria-labelledby=sourceofdrinkingwater]').keyup(function(){
+      var total_value = 0;
+      $('input[aria-labelledby=sourceofdrinkingwater]').map(function(){
+        var element = $(this);
+        total_value = total_value + parseFloat(element.val());
+        // console.log(total_value);
+        
+      });
+      
+
+      $('input[name=totalhouseholdwithdrinkingwatersource]').val(total_value);
+    })
+
+    // for total in sewerage system
+
+    $('input[aria-labelledby=seweragetype]').keyup(function(){
+      var total_value = 0;
+      $('input[aria-labelledby=seweragetype]').map(function(){
+        var element = $(this);
+        total_value = total_value + parseFloat(element.val());        
+      });
+      
+
+      $('input[name=total]').val(total_value);
+    })
+    // end of document load 
+  })
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  {% include "head_part.html" %}
+  <title>Create Health Worker</title>
+  <style>
+      label {
+          color:black;
+      }
+  </style>
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        {% include "sidebar_part.html" %}
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+            {% include "topbar_part.html" %}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h1 class="h3 mb-4 text-gray-800">Create Health Worker Profile</h1>
+                                    {% if error %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                      <strong>Error!</strong> {{error}}
+                                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                        
+                                    {% endif %}
+                                    {% if success %}
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                      <strong>Success!</strong> {{success}}
+                                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                        
+                                    {% endif %}
+                                </div>
+                            <div class="card-body">
+                                <form method="POST">
+                                  {% csrf_token %} 
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Username:</label>
+                                        <input type="text" name="username" class="form-control" id="inputEmail4" placeholder="username">
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label for="inputPassword4">Password:</label>
+                                        <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Password">
+                                      </div>
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="inputAddress">LHW Code:</label>
+                                        <input type="text" name="code" class="form-control" id="inputAddress" placeholder="LHW Code">
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label for="inputAddress2">LHW Name:</label>
+                                        <input type="text" name="name" class="form-control" id="inputAddress2" placeholder="LHW Name">
+                                      </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="">LHW CNIC:</label>
+                                        <input type="text" name="cnic" class="form-control" id="" placeholder="LHW CNIC">
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label for="">LHW Father/Husband Name:</label>
+                                        <input type="text" name="fatherorhusbandname" class="form-control" id="" placeholder="LHW Father or Husband Name">
+                                      </div>
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="">LHW Attached Facility:</label>
+                                        <input type="text" name="attachedfacility" class="form-control" id="" placeholder="LHW Attached Facility">
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label for="">LHW Union Council:</label>
+                                        <input type="text" name="unioncouncil" class="form-control" id="" placeholder="LHW Union Council">
+                                      </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="">LHW Tehsil:</label>
+                                        <input type="text" name="tehsil" class="form-control" id="" placeholder="LHW Tehsil">
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label for="">LHW District:</label>
+                                        <input type="text" name="district" class="form-control" id="" placeholder="LHW District">
+                                      </div>
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="">Catchment Population of FLCF:</label>
+                                        <input type="text" name="catchmentpopulation" class="form-control" id="" placeholder="Catchment Population of FLCF">
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label for="">Population Registered by LHWS:</label>
+                                        <input type="text" name="populationregistered" class="form-control" id="" placeholder="Population registered by lhws">
+                                      </div>
+                                    </div>
+
+                                    
+                                    
+                                    <!-- <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="inputCity">City</label>
+                                        <input type="text" class="form-control" id="inputCity">
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label for="inputState">State</label>
+                                        <select id="inputState" class="form-control">
+                                          <option selected>Choose...</option>
+                                          <option>...</option>
+                                        </select>
+                                      </div>
+                                     
+                                    </div> -->
+                                    <!-- <div class="form-group">
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                                        <label class="form-check-label" for="gridCheck">
+                                          Check me out
+                                        </label>
+                                      </div>
+                                    </div> -->
+                                    <button type="submit" class="float-right btn btn-primary">Create</button>
+                                  </form>
+
+                            </div> 
+                        </div>
+                    </div>
+                    <!-- Page Heading -->
+                    
+
+                    
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+          {% include "footer_part.html" %}
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    {% include "modals_and_scripts_part.html" %}
+
+</body>
+
+</html>

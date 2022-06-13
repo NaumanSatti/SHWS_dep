@@ -1,0 +1,73 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Children</h5>
+
+        <h3>{{imr}}</h3>
+      <!-- Bar Chart -->
+      <div id="Live"></div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          new ApexCharts(document.querySelector("#Live"), {
+            series: [{
+          name: 'IMR RATE',
+          data: {{imr|safe}}
+        }],
+        chart: {
+          type: 'area',
+          stacked: false,
+          height: 350,
+          
+          zoom: {
+            type: 'x',
+            enabled: true,
+            autoScaleYaxis: true
+          },
+          toolbar: {
+            autoSelected: 'zoom'
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        markers: {
+          size: 0,
+        },
+        title: {
+          text: 'IMR RATE DISTRICT WISE',
+          align: 'left'
+        },
+        fill: {
+          type: 'gradient',
+          gradient: {
+            shadeIntensity: 1,
+            inverseColors: false,
+            opacityFrom: 0.5,
+            opacityTo: 0,
+            stops: [0, 90, 100]
+          },
+        },
+        yaxis: {
+        title: {
+          text: 'IMR RATE'
+        },
+        min: 0,
+        max: 5000
+      },
+        xaxis: {
+            categories: {{districts_list|safe}},
+        title: {
+          text: 'Districts'
+        },
+    },
+        
+     
+
+          }).render();
+        });
+      </script>
+      <!-- End Bar Chart -->
+      
+      
+    </div>
+  </div>

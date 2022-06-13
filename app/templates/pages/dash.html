@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+   
+</head>
+
+<body>
+
+        <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+       
+    
+        <main class="content">
+
+           
+
+           
+            <div class="row">
+                <div class="col-4 mb-4">
+                    <div class="card bg-yellow-100 border-0 shadow">
+                        <div class="card-header d-sm-flex flex-row align-items-center flex-0" style="background-color: #b3cde0;">
+                            <div class="d-block mb-3 mb-sm-0">
+                                <div class="fs-5 fw-normal mb-2"><h4>Live Births</h4></div>
+                                <div class="subheading">Live Births in {{dis}}</div>
+                                <h2 class="fs-3 fw-extrabold"><h3>{{live}}</h3></h2>
+                                            
+                            </div>
+                            
+                        </div>
+                        <div class="card-body p-2">
+                            <div class="ct-chart-sales-value ct-double-octave ct-series-g"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-4 mb-4 " >
+                  <div class="card border-0 shadow" >
+                      <div class="card-header d-sm-flex flex-row align-items-center flex-0" style="background-color: #f4e2d8;">
+                          <div class="d-block mb-3 mb-sm-0">
+                              <div class="fs-5 fw-normal mb-2"><h4>Total Deaths</h4></div>
+                              <div class="subheading">Total Deaths in {{dis}}</div>
+                              <h2 class="fs-3 fw-extrabold">{{tdeaths}}</h2>
+                              
+                          </div>
+                         
+                      </div>
+                      <div class="card-body p-2">
+                          <div class="ct-chart-sales-value ct-double-octave ct-series-g"></div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-4 mb-4">
+                <div class="card bg-yellow-100 border-0 shadow">
+                    <div class="card-header d-sm-flex flex-row align-items-center flex-0" style="background-color: #c4e0e5;">
+                        <div class="d-block mb-3 mb-sm-0">
+                            <div class="fs-5 fw-normal mb-2"> <h4>INFANTS DEATHS</h4></div>
+                            <div class="subheading">Total Infants Deaths in {{dis}}</div>
+                            <h2 class="fs-3 fw-extrabold">{{infDeaths}}</h2>
+                           
+                        </div>
+                       
+                    </div>
+                    <div class="card-body p-2">
+                        <div class="ct-chart-sales-value ct-double-octave ct-series-g"></div>
+                    </div>
+                </div>
+            </div>
+
+                <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                    <div class="card border-0 shadow">
+                        <div class="card-body">
+                            <div class="h3">Death Percentage Data </div>
+                            <div class="h6">Death Percentage Data for {{dis}} </div>
+                            <div id="radialBarBottom">
+                              <script>
+                              document.addEventListener("DOMContentLoaded", () => {
+                                    new ApexCharts(document.querySelector("#radialBarBottom"), {
+                                      series: {{percentage}},
+                        chart: {
+                        height: 500,
+                        type: 'radialBar',
+                        toolbar: {
+                                  show: true
+                                }
+                      },
+                      plotOptions: {
+                        radialBar: {
+                          dataLabels: {
+                            name: {
+                              fontSize: '22px',
+                            },
+                            value: {
+                              fontSize: '16px',
+                            },
+                            title: {
+                                      text: 'Live Births vs Total Deaths'
+                                  },
+                            total: {
+                              show: true,
+                              label: 'Death Percentage',
+                              formatter: function (w) {
+                                // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                                return 
+                              }
+                            }
+                          }
+                        }
+                      },
+                      labels: ['% All Death', '% Infant Death', '% Maternal Death'],
+                                    }).render();
+                                  });
+              
+                              </script>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                  <div class="card border-0 shadow">
+                      <div class="card-body">
+                          <div class="h3">Live Births vs. Total Deaths </div>
+                          <div class="h6">For {{dis}} </div>
+                          <div id="barchart">
+                            <script>
+                                document.addEventListener("DOMContentLoaded", () => {
+                                  new ApexCharts(document.querySelector("#barchart"), {
+                                    series: {{series1|safe}},
+                                    dataLabels: {
+                                      formatter: function (val, opts) {
+                                          return opts.w.config.series[opts.seriesIndex]
+                                      },
+                                    },
+                                    chart: {
+                                    
+                                    height:500,
+                                    type: 'pie',
+                                    toolbar: {
+                                  show: true
+                                }
+                                      
+                                    },
+                                    title: {
+                                    text: 'Live Births vs Total Deaths'
+                                },
+                                legend: {
+                                  position: 'bottom',
+                                  horizontalAlign: 'left'
+                                  },
+                                    labels: ['No. of Live Births','All Deaths']
+                                  }).render();
+                                });
+                              </script>
+                            </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+                        <div class="h3">Death Percentage Data </div>
+                        <div class="h6">Death Percentage Data for {{dis}} </div>
+
+                        <div id="areachart">
+                          <script>
+                              document.addEventListener("DOMContentLoaded", () => {
+                                new ApexCharts(document.querySelector("#areachart"), {
+                                  series: {{series}},
+                                  dataLabels: {
+                                formatter: function (val, opts) {
+                                    return opts.w.config.series[opts.seriesIndex]
+                                },
+                              },
+                    chart: {
+                    
+                    height:500,
+                    type: 'donut',
+                    toolbar: {
+                                  show: true
+                                }
+                  },
+                  plotOptions: {
+                    pie: {
+                      startAngle: -90,
+                      endAngle: 270
+                    }
+                  },
+                  dataLabels: {
+                    enabled: false
+                  },
+                  fill: {
+                    type: 'gradient',
+                  },
+                 
+                  title: {
+                    text: 'Pregenancy and Delivery Details'
+                  },
+                  labels: ['Preg. Women Visited','Total Preg. Women','Delivered by Doctors','Total Deliveries','Follow up Done'],
+                  legend: {
+                                  position: 'bottom',
+                                  horizontalAlign: 'left'
+                 },
+                 }).render();
+                    });
+                  </script>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+              
+              </div>
+              
+            <div class="row">
+                <div class="col-12 col-xl-8">
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                            <div class="card border-0 shadow">
+                              <div class="h3">Infant Mortality Rate vs. Maternal Mortality Rate </div>
+                              <div class="h6">For {{dis}} </div>
+                              <div id="xyz1">
+                                <script>
+                                    document.addEventListener("DOMContentLoaded", () => {
+                                      new ApexCharts(document.querySelector("#xyz1"), {
+                                        series: [{
+                      name: 'RATE',
+                      data: {{death}}
+                    }],
+                      chart: {
+                      type: 'bar',
+                      height: 600,
+                      animations: {
+                        enabled: false
+                      }
+                    },
+                    plotOptions: {
+                      bar: {
+                        horizontal: true,
+                        barHeight: '100%',
+                    
+                      },
+                    },
+                    dataLabels: {
+                      enabled: false,
+                    },
+                    stroke: {
+                      colors: ["#fff"],
+                      width: 0.2
+                    },
+                    labels: ['Infant Mortality Rate', 'Maternal Mortality Rate'],
+                    yaxis: {
+                      axisBorder: {
+                        show: false
+                      },
+                      axisTicks: {
+                        show: false
+                      },
+                      labels: {
+                        show: false
+                      },
+                      title: {
+                        text: 'IMR vs. MMR',
+                      },
+                    },
+                    grid: {
+                      position: 'back'
+                    },
+                    title: {
+                      text: 'Infant Mortality Rate vs. Maternal Mortality Rate',
+                      align: 'left',
+                      offsetY: 30
+                    },
+                    fill: {
+                      type: 'image',
+                      opacity: 0.87,
+                      image: {
+                        src: ['../../static/assets/img/abc.png']
+                       
+                      }
+                    },
+                                      }).render();
+                                    });
+                                  </script>
+                                </div>
+                         
+                            </div>
+                        </div>
+                        <div class="col-12 col-xxl-6 mb-4">
+                            <div class="card border-0 shadow">
+                                <div class="card-header border-bottom d-flex align-items-center justify-content-between">
+                                   <h2 class="fs-5 fw-bold mb-0">Team members</h2>
+                                    <a href="#" class="btn btn-sm btn-primary">See all</a>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush list my--3">
+                                        <li class="list-group-item px-0">
+                                            <div class="row align-items-center">
+                                            <div class="col-auto">
+                                                <!-- Avatar -->
+                                                <a href="#" class="avatar">
+                                                    <img class="rounded" alt="Image placeholder" src="../../assets/img/team/profile-picture-1.jpg">
+                                                </a>
+                                            </div>
+                                            <div class="col-auto ms--2">
+                                                <h4 class="h6 mb-0">
+                                                    <a href="#">Chris Wood</a>
+                                                </h4>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="bg-success dot rounded-circle me-1"></div>
+                                                    <small>Online</small>
+                                                </div>
+                                            </div>
+                                            <div class="col text-end">
+                                                <a href="#" class="btn btn-sm btn-secondary d-inline-flex align-items-center">
+                                                    <svg class="icon icon-xxs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                                                    Invite
+                                                </a>
+                                            </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item px-0">
+                                            <div class="row align-items-center">
+                                                <div class="col-auto">
+                                                    <!-- Avatar -->
+                                                    <a href="#" class="avatar">
+                                                        <img class="rounded" alt="Image placeholder" src="../../assets/img/team/profile-picture-2.jpg">
+                                                    </a>
+                                                </div>
+                                                <div class="col-auto ms--2">
+                                                    <h4 class="h6 mb-0">
+                                                        <a href="#">Jose Leos</a>
+                                                    </h4>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="bg-warning dot rounded-circle me-1"></div>
+                                                        <small>In a meeting</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col text-end">
+                                                    <a href="#" class="btn btn-sm btn-secondary d-inline-flex align-items-center">
+                                                        <svg class="icon icon-xxs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd"></path></svg>
+                                                        Message
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item px-0">
+                                            <div class="row align-items-center">
+                                                <div class="col-auto">
+                                                    <!-- Avatar -->
+                                                    <a href="#" class="avatar">
+                                                        <img class="rounded" alt="Image placeholder" src="../../assets/img/team/profile-picture-3.jpg">
+                                                    </a>
+                                                </div>
+                                                <div class="col-auto ms--2">
+                                                    <h4 class="h6 mb-0">
+                                                        <a href="#">Bonnie Green</a>
+                                                    </h4>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="bg-danger dot rounded-circle me-1"></div>
+                                                        <small>Offline</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col text-end">
+                                                    <a href="#" class="btn btn-sm btn-secondary d-inline-flex align-items-center">
+                                                        <svg class="icon icon-xxs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd"></path></svg>
+                                                        Message
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item px-0">
+                                            <div class="row align-items-center">
+                                                <div class="col-auto">
+                                                    <!-- Avatar -->
+                                                    <a href="#" class="avatar">
+                                                        <img class="rounded" alt="Image placeholder" src="../../assets/img/team/profile-picture-4.jpg">
+                                                    </a>
+                                                </div>
+                                                <div class="col-auto ms--2">
+                                                <h4 class="h6 mb-0">
+                                                        <a href="#">Neil Sims</a>
+                                                </h4>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="bg-danger dot rounded-circle me-1"></div>
+                                                    <small>Offline</small>
+                                                </div>
+                                                </div>
+                                                <div class="col text-end">
+                                                    <a href="#" class="btn btn-sm btn-secondary d-inline-flex align-items-center">
+                                                        <svg class="icon icon-xxs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd"></path></svg>
+                                                        Message
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xxl-6 mb-4">
+                            <div class="card border-0 shadow">
+                                <div class="card-header border-bottom d-flex align-items-center justify-content-between">
+                                    <h2 class="fs-5 fw-bold mb-0">Progress track</h2>
+                                     <a href="#" class="btn btn-sm btn-primary">See tasks</a>
+                                 </div>
+                                <div class="card-body">
+                                    <!-- Project 1 -->
+                                    <div class="row mb-4">
+                                        <div class="col-auto">
+                                            <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path></svg>
+                                        </div>
+                                        <div class="col">
+                                            <div class="progress-wrapper">
+                                                <div class="progress-info">
+                                                    <div class="h6 mb-0">Rocket - SaaS Template</div>
+                                                    <div class="small fw-bold text-gray-500"><span>75 %</span></div>
+                                                </div>
+                                                <div class="progress mb-0">
+                                                    <div class="progress-bar bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Project 2 -->
+                                    <div class="row align-items-center mb-4">
+                                        <div class="col-auto">
+                                            <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path></svg>
+                                        </div>
+                                        <div class="col">
+                                            <div class="progress-wrapper">
+                                                <div class="progress-info">
+                                                    <div class="h6 mb-0">Themesberg - Design System</div>
+                                                    <div class="small fw-bold text-gray-500"><span>60 %</span></div>
+                                                </div>
+                                                <div class="progress mb-0">
+                                                    <div class="progress-bar bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Project 3 -->
+                                    <div class="row align-items-center mb-4">
+                                        <div class="col-auto">
+                                            <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path></svg>
+                                        </div>
+                                        <div class="col">
+                                            <div class="progress-wrapper">
+                                                <div class="progress-info">
+                                                    <div class="h6 mb-0">Homepage Design in Figma</div>
+                                                    <div class="small fw-bold text-gray-500"><span>45 %</span></div>
+                                                </div>
+                                                <div class="progress mb-0">
+                                                    <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Project 4 -->
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-auto">
+                                            <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path></svg>
+                                        </div>
+                                        <div class="col">
+                                            <div class="progress-wrapper">
+                                                <div class="progress-info">
+                                                    <div class="h6 mb-0">Backend for Themesberg v2</div>
+                                                    <div class="small fw-bold text-gray-500"><span>34 %</span></div>
+                                                </div>
+                                                <div class="progress mb-0">
+                                                    <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100" style="width: 34%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-xl-4">
+                    <div class="col-12 px-0 mb-4">
+                        <div class="card border-0 shadow">
+                            <div class="card-header d-flex flex-row align-items-center flex-0 border-bottom" style="background-color: #fad9c1;">
+                              <div class="card-header d-sm-flex flex-row align-items-center flex-0" style="background-color: #fad9c1;" >
+                                <div class="d-block mb-3 mb-sm-0">
+                                    <div class="fs-5 fw-normal mb-2"><h4>Maternal Deaths</h4></div>
+                                    <div class="subheading">Maternal Deaths in {{dis}}</div>
+                                    <h2 class="fs-3 fw-extrabold"><h3>{{maternal}}</h3></h2>
+                                                
+                                </div>
+                                
+                            </div>
+                              
+                            </div>
+                            <div class="card-body p-2">
+                                <div class="ct-chart-ranking ct-golden-section ct-series-a"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 px-0 mb-4">
+                      
+                        <div class="card border-0 shadow">
+                          <div class="h3">Infant Mortality Rate Graph </div>
+                                  <div class="h6">For {{dis}} </div>
+                            <div class="card-body">
+                                
+                                
+                                <div class="d-flex align-items-center justify-content-between pt-3">
+                                  
+                                  <div id="xyz">
+                                    <script>
+                                        document.addEventListener("DOMContentLoaded", () => {
+                                          new ApexCharts(document.querySelector("#xyz"), {
+                                            series: [{
+                           
+                            data: {{radar}},
+                          }],
+                            chart: {
+                            height: 455,
+                            width: 400,
+                            type: 'radar',
+                          },
+                          dataLabels: {
+                            enabled: true
+                          },
+                          plotOptions: {
+                            radar: {
+                              size: 140,
+                              polygons: {
+                                strokeColors: '#5c1e1e',
+                                fill: {
+                                  colors: ['#f8f8f8']
+                                }
+                              }
+                            }
+                          },
+                          title: {
+                            text: 'Infant Mortality Rate'
+                          },
+                          colors: ['#FF4560'],
+                          markers: {
+                            size: 4,
+                            colors: ['#FF0000'],
+                            strokeColor: '#FF4560',
+                            strokeWidth: 2,
+                          },
+                          tooltip: {
+                            y: {
+                              formatter: function(val) {
+                                return val
+                              }
+                            }
+                          },
+                          xaxis: {
+                            categories: ['Infants Deaths', 'Death More Than One Week', 'New Natal Deaths', 'Live Births', 'Total Deaths', 'IMR RATE']
+                          },
+                          yaxis: {
+                            tickAmount: 6,
+                            labels: {
+                              formatter: function(val, i) {
+                                if (i % 2 === 0) {
+                                  return val
+                                } else {
+                                  return ''
+                                }
+                              }
+                            }
+                          }
+                                          }).render();
+                                        });
+                                      </script>
+                                    </div>
+                                  
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 px-0">
+                        <div class="card border-0 shadow">
+                            <div class="card-body">
+                                <h2 class="fs-5 fw-bold mb-1">Acquisition</h2>
+                                <p>Tells you where your visitors originated from, such as search engines, social networks or website referrals.</p>
+                                <div class="d-block">
+                                    <div class="d-flex align-items-center me-5">
+                                        <div class="icon-shape icon-sm icon-shape-danger rounded me-3">
+                                            <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8zM8 9a1 1 0 00-2 0v2a1 1 0 102 0V9z" clip-rule="evenodd"></path></svg>
+                                        </div>
+                                        <div class="d-block">
+                                            <label class="mb-0">Bounce Rate</label>
+                                            <h4 class="mb-0">33.50%</h4>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center pt-3">
+                                        <div class="icon-shape icon-sm icon-shape-purple rounded me-3">
+                                            <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path></svg>                                        </div>
+                                        <div class="d-block">
+                                            <label class="mb-0">Sessions</label>
+                                            <h4 class="mb-0">9,567</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @@include('./dashboard/_footer.html', {
+                "path": "../..",
+                "classes": "text-dark"
+            })
+        </main>
+
+    @@include('./_scripts.html', {
+        "path": "../.."
+    })
+    
+</body>
+
+</html>

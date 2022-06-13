@@ -1,0 +1,208 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+{% block content %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Health Worker</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item">Health Workers</li>
+          <li class="breadcrumb-item active">Add</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section profile">
+      <div class="row">
+       
+        {% load widget_tweaks %}
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Health Worker Add form</h5>
+            
+
+            <form method="post" enctype="multipart/form-data" action="{% url 'create-heath-worker' %}" >
+              {% csrf_token %}
+              <div class="row mb-3">
+
+                <label for="username" class="col-sm-2 col-form-label">Username</label>
+                <div class="col-sm-4">
+                  <input type="text" name="username" class="form-control" id="username" required>
+                </div>
+
+                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-4">
+                  <input type="password" name="password" class="form-control" id="password" required>
+                </div>
+
+              </div>
+
+
+              <div class="row mb-3">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Code</label>
+                <div class="col-sm-10">
+                  <input type="text" name="code" class="form-control" id="inputEmail" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" name="name" class="form-control" id="inputPassword" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputPassword4" class="col-sm-2 col-form-label">CNIC</label>
+                <div class="col-sm-10">
+                  <input type="text" name="cnic" class="form-control" id="inputPassword4" required>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputPassword4" class="col-sm-2 col-form-label">Phone Number</label>
+                <div class="col-sm-10">
+                  <input type="text" name="phone" class="form-control" id="inputPassword4" required>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputPassword4" class="col-sm-2 col-form-label">Date of Birth</label>
+                <div class="col-sm-10">
+                  <input type="date" name="dateofbirth" class="form-control" id="inputPassword4" required>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Father or Husband Name:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="father_or_husband_name" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Attached Facility</label>
+                <div class="col-sm-10">
+                  <input type="text" name="attached_facility" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Union Council</label>
+                <div class="col-sm-10">
+                  <input type="text" name="union_council" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Tehsil</label>
+                <div class="col-sm-10">
+                  <input type="text" name="tehsil" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Catchment of population of flcf</label>
+                <div class="col-sm-10">
+                  <input type="text" name="catchment_of_population_of_flcf" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Districts</label>
+                <div class="col-sm-10">
+                  <select class="form-select" name="district" aria-label="multiple select example" required>
+                    <option selected value="">.....</option>
+                   {% for dis in districts %}
+                   <option value="{{dis.pk}}">{{dis.district}}</option>
+                   {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Population registered by lhws</label>
+                <div class="col-sm-10">
+                  <input type="text" name="population_registered_by_lhws" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputNumber" class="col-sm-2 col-form-label">Image</label>
+                <div class="col-sm-10">
+                  <input class="form-control mb-3" name="thumbnail" type="file" id="formFile">
+                  <img style="display: none;" class="mb-1" id="blah" width="150" height="150" src="{% static 'assets/img/profile-img.jpg' %}" alt="your image" /><br>
+                  <button  style="display: none;" id="delimg" type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                </div>
+                
+              </div>
+              
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <!-- <button type="reset" class="btn btn-secondary">Reset</button> -->
+              </div>
+            </form>
+          </div>
+        </div>
+
+          
+
+
+      </div>
+    </section>
+
+  </main>
+{% endblock %}
+
+{% block extrascripts %}
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+<script>
+  $("#username").change(function () {
+    var username = $(this).val();
+
+    $.ajax({
+      url: "{% url 'check-username' %}",
+      data: {
+        'username': username
+      },
+      dataType: 'json',
+      success: function (data) {
+        if (data.is_taken) {
+          alert("A user with this username already exists.");
+          $('#username').val("");
+        }
+      }
+    });
+
+  });
+</script>
+
+<script>
+  $(function(){
+    var orgpath = $('#blah').src;
+    $('#formFile').change(function(){
+      const [file] = formFile.files
+      if (file) {
+        blah.src = URL.createObjectURL(file)
+
+      }
+
+      $('#delimg').css('display','block');
+      $('#blah').css('display','block');
+    })
+
+        $('#delimg').click(function(){
+        $('#formFile').val("");
+        $('#delimg').css('display','none');
+        $('#blah').css('display','none');
+
+      })
+  })
+
+  
+</script>
+
+
+{% endblock %}

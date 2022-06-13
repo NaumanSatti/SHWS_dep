@@ -1,0 +1,472 @@
+  
+<div class="card">
+    
+    <div class="row">
+    
+      <div class="col-sm-6">
+      <div class="card-body">
+        
+       
+      <h5 class="card-title">No. of 6-59 months old children whose MAUC done</h5>
+  
+        
+        <!-- Bar Chart -->
+        <div id="line11-adwords" class=""></div>
+  
+        
+        <!-- End Bar Chart -->
+      </div>
+      </div>
+  
+    
+      <div class="col-sm-6">
+      <div class="card-body">
+          <h5 class="card-title">No. of less than five year old children provided micro nutrient sachet</h5>
+    
+      
+    
+          <!-- Bar Chart -->
+          <div id="line11" class=""></div>
+      </div>
+    </div>
+    </div>
+  </div>
+  
+  
+  <div class="row">
+    <div class="col-md-12 col-lg-6">
+        <div class="mb-3 card">
+            <div class="card-header-tab card-header-tab-animation card-header">
+                <div class="card-header-title">
+                    <i class="header-icon lnr-apartment icon-gradient bg-love-kiss"> </i>
+                    No. of New born Started Breast Feeding Within 1 hr. 
+                </div>
+                
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tabs-eg-77">
+                        <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
+                            <div class="widget-chat-wrapper-outer">
+                                <div class="widget-chart-wrapper widget-chart-wrapper-lg opacity-10 m-0">
+                                    <div id="Bfeeding"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <h6 class="text-muted text-uppercase font-size-md opacity-5 font-weight-normal">No. of New born Started Breast Feeding Within 1 hr. (District Wise)</h6>
+                        <div class="scroll-area-lg">
+                            <div class="scrollbar-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                          <th scope="col">Sr. No</th>
+                                          <th scope="col">Districts</th>
+                                          <th scope="col">No. of New born Started Breast Feeding Within 1 hr</th>
+                                          <th scope="col">No. of Live Births</th>
+                                          <th scope="col">% No. of New born Started Breast Feeding Within 1 hr</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        
+                                        {% for result in bfData %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ result.3 }}</td>
+                                            
+                                            <td>{{ result.0 }}</td>
+                                            
+                                            <td>{{ result.1 }}</td>
+                                            <td>{{ result.2 }}%</td>
+                                            
+                                        </tr>
+                                        
+                                        {% endfor %}
+
+                                     </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-lg-6">
+        <div class="mb-3 card">
+            <div class="card-header-tab card-header">
+                <div class="card-header-title">
+                    <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
+                    Women Delivered having All ANC Visits by SBAs (Dr, Nurse, LHV, Midwife/CMW)
+                </div>
+                
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="tab-eg-55">
+                    <div class="widget-chart p-3">
+                        <div style="height: 350px">
+                            <div id="ANC"></div>
+                        </div>
+                        
+                    </div>
+                    <div class="pt-2 card-body">
+                        <div class="row">
+                            <div >
+                                <div class="widget-content">
+                                    <div class="widget-content-outer">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left">
+                                                <div class="widget-numbers fsize-3 text-muted">Percentage</div>
+                                            </div>
+                                            <div class="widget-content-right">
+                                                <div class="text-muted opacity-6">No of Women Delivered having 4 or >4 ANC vsists (Dr. Nurse or LHV)</div>
+                                            </div>
+                                        </div>
+                                        <div class="widget-progress-wrapper mt-1" id="ANCPerc">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+  
+  
+  
+  
+  
+    
+  
+       
+        <!-- End Bar Chart -->
+        
+  
+  
+  
+  
+  
+  
+  
+    <script>
+  
+  
+  document.addEventListener("DOMContentLoaded", () => {
+                      new ApexCharts(document.querySelector("#line11-adwords"), {
+                        series: [{
+          name: 'No. of 6-59 Months old children having MAUC done',
+          data: {{no_of_childrenhaving_maucdone}}
+        }, {
+          name: 'Total 6-59 Months old children',
+          data: {{no_of_sixto_fivenine_children}}
+        }],
+          chart: {
+          height: 350,
+          type: 'area'
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        xaxis: {
+          
+          categories: {{districts_list|safe}},
+          title: {
+         text: 'Districts'
+       }
+        },
+        legend: {
+  position: 'top',
+  horizontalAlign: 'left'
+  },
+        
+                      }).render();
+                    });
+  
+  
+  
+  
+document.addEventListener("DOMContentLoaded", () => {
+                      new ApexCharts(document.querySelector("#ANC"), {
+                        series: [ {
+          name: 'No. of Women Delivered having 4 or >4 ANC visits',
+          color:'#6A3593',
+          data: {{women_delivered_anc_visits}}
+        }, {
+          name: 'Total No of Deliveries',
+          data: {{total_of_deliveries}},
+          color:'#ef629f',
+        }],
+          chart: {
+          type: 'bar',
+          height: 350,
+          stacked: true,
+          toolbar: {
+            show: true
+          },
+          zoom: {
+            enabled: true
+          }
+        },
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            legend: {
+              position: 'bottom',
+              offsetX: -10,
+              offsetY: 0
+            }
+          }
+        }],
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            borderRadius: 10
+          },
+        },
+        xaxis: {
+          
+          categories: {{districts_list|safe}},
+          title:{
+            text:'Districts'
+          }
+        },
+        legend: {
+          position: 'top',
+          horizontalAlign: 'left'
+        },
+        fill: {
+          opacity: 1
+        }
+
+        
+                      }).render();
+                    });
+
+                    document.addEventListener("DOMContentLoaded", () => {
+                      new ApexCharts(document.querySelector("#ANCPerc"), {
+                        series: [{
+            name: "Percentage of Visits by ANC",
+            data: {{perc_ANC}},
+            color:'#185a9d'
+        }],
+          chart: {
+          height: 350,
+          type: 'line',
+          zoom: {
+            enabled: false
+          }
+        },
+        dataLabels: {
+          enabled: false,
+          formatter: function (val) {
+            return val+"%";
+          }
+        },
+        stroke: {
+          curve: 'straight'
+        },
+        title: {
+          text: 'Percentage ANC Visits',
+          align: 'left'
+        },
+        grid: {
+          row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.5
+          },
+        },
+        labels: {
+            show: false,
+            formatter: function (val) {
+              return val+"%" ;
+            }
+          },
+        xaxis: {
+          categories:{{districts_list|safe}},
+        }
+                      }).render();
+                    });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      document.addEventListener("DOMContentLoaded", () => {
+                   new ApexCharts(document.querySelector("#line11"), {
+                    series: [{
+          name: 'No.of <5 years old children provided micronutrient sachet',
+          data: {{no_of_less_thanfive_children_sachet_provided}}
+        },
+        {
+          name: 'Total <5 years old children',
+          data: {{no_of_less_than_fiveyear_children}}
+        }],
+          chart: {
+          height: 420,
+          type: 'bar',
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 10,
+            dataLabels: {
+              position: 'top', // top, center, bottom
+            },
+          }
+        },
+        dataLabels: {
+          enabled: true,
+          formatter: function (val) {
+            return val;
+          },
+          offsetY: -20,
+          style: {
+            fontSize: '12px',
+            colors: ["#304758"]
+          }
+        },
+        
+        xaxis: {
+          categories: {{districts_list|safe}},
+          title: {
+         text: 'Districts'
+       },
+          position: 'bottom',
+          axisBorder: {
+            show: false
+          },
+          axisTicks: {
+            show: false
+          },
+          crosshairs: {
+            fill: {
+              type: 'gradient',
+              gradient: {
+                colorFrom: '#D8E3F0',
+                colorTo: '#BED1E6',
+                stops: [0, 100],
+                opacityFrom: 0.4,
+                opacityTo: 0.5,
+              }
+            }
+          },
+          tooltip: {
+            enabled: true,
+          }
+        },
+        yaxis: {
+          axisBorder: {
+            show: false
+          },
+          axisTicks: {
+            show: false,
+          },
+          labels: {
+            show: false,
+            formatter: function (val) {
+              return val ;
+            }
+          },
+          legend: {
+  position: 'top',
+  horizontalAlign: 'left'
+  },
+        
+        },
+        
+     }).render();
+                 });
+
+
+
+
+    
+  document.addEventListener("DOMContentLoaded", () => {
+                      new ApexCharts(document.querySelector("#Bfeeding"), {
+                        
+        series: [{
+          name: 'No of New born Started Breast Feeding within 1 hr',
+          type: 'column',
+          data: {{no_of_new_born_started_breastfeeding}},
+          color:'#FF0000'
+        }, {
+          name: 'No. of Live Birth',
+          type: 'area',
+          data: {{no_of_live_births}},
+          color:'#FFA500'
+        }],
+          chart: {
+          height: 350,
+          type: 'line',
+          stacked: false,
+        },
+        stroke: {
+          width: [0, 2, 5],
+          curve: 'smooth'
+        },
+        plotOptions: {
+          bar: {
+            columnWidth: '50%'
+          }
+        },
+        
+        fill: {
+          opacity: [0.85, 0.25, 1],
+          gradient: {
+            inverseColors: false,
+            shade: 'light',
+            type: "vertical",
+            opacityFrom: 0.85,
+            opacityTo: 0.55,
+            stops: [0, 100, 100, 100]
+          }
+        },
+        labels: {{districts_list|safe}},
+        markers: {
+          size: 0
+        },
+        xaxis: {
+         
+        },
+        yaxis: {
+          title: {
+            text: 'Total',
+          },
+          min: 0
+        },
+        tooltip: {
+          shared: true,
+          intersect: false,
+          y: {
+            formatter: function (y) {
+              if (typeof y !== "undefined") {
+                return "Total: " + y.toFixed(0)  ;
+              }
+              return y;
+        
+            }
+          }
+        }
+        
+                      }).render();
+                    });
+  
+     </script>

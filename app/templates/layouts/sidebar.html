@@ -1,0 +1,60 @@
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+      {% if request.user.is_superuser %}
+      <li class="nav-item">
+        <a class="nav-link {% if filename != 'index' %} collapsed {% endif %}" href="/dashboard">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link {% if filename != 'index' %} collapsed {% endif %}" href="/tabular">
+          <i class="bi bi-grid"></i>
+          <span>Tabular View</span>
+        </a>
+      </li>
+      {% endif %}
+
+      {% if request.user.is_superuser %}
+      <li class="nav-heading">Admin</li>
+
+      <li class="nav-item">
+        <a class="nav-link {% if filename != 'healthworker' %} collapsed {% endif %}" href="/health_workers">
+          <i class="bi bi-person"></i>
+          <span>Health Workers</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link {% if filename != 'healthworker' %} collapsed {% endif %}" href="/details">
+          <i class="bi bi-person"></i>
+          <span>Details of Health Workers</span>
+        </a>
+      </li>
+      <!-- end of health worker nav -->
+      {% endif %}
+
+      <li class="nav-heading">Pages</li>
+
+      <li class="nav-item">
+        <a class="nav-link {% if filename != 'profile' %} collapsed {% endif %}" href="/profile">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link {% if filename != 'myreports' %} collapsed {% endif %}" href="/my_reports">
+          <i class="bi bi-book"></i>
+          <span>My Reports</span>
+        </a>
+      </li>
+      <!-- end of my reports -->
+
+      
+
+    </ul>
+
+  </aside><!-- End Sidebar-->

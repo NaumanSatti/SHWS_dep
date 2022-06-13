@@ -1,0 +1,73 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Children</h5>
+
+      <!-- Bar Chart -->
+      <div id="newbornbarChart"></div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          new ApexCharts(document.querySelector("#newbornbarChart"), {
+            series: [{
+                name: "No of Live Births",
+                data: {{no_of_live_births|safe}}
+                },{
+                name: "New Born Started Breast Feeding",
+                data: {{no_of_new_born_started_breastfeeding|safe}}
+                },{
+                name: "No of Children Having Mauc Done",
+                data: {{no_of_childrenhaving_maucdone|safe}}
+                },
+                {
+                name: "No of 6 to 59 months children",
+                data: {{no_of_sixto_fivenine_children|safe}}
+                },{
+                name: "No of less than five year children provided marco nutrients sachet",
+                data: {{no_of_less_thanfive_children_sachet_provided|safe}}
+                },{
+                name: "No of less than five year children",
+                data: {{no_of_less_than_fiveyear_children|safe}}
+                },{
+                name: "No of new born babies whose immunization started",
+                data: {{no_of_new_born_whose_immune_started|safe}}
+                }
+              ],
+                chart: {
+                type: 'bar',
+                height: 4000
+                },
+                plotOptions: {
+                bar: {
+                    horizontal: true,
+                    dataLabels: {
+                    position: 'top',
+                    },
+                }
+                },
+                dataLabels: {
+                enabled: true,
+                offsetX: -6,
+                style: {
+                    // fontSize: '5px',
+                    // colors: ['#fff']
+                }
+                },
+                stroke: {
+                show: true,
+                width: 1,
+                colors: ['#fff']
+                },
+                tooltip: {
+                shared: true,
+                intersect: false
+                },
+                xaxis: {
+                categories: {{districts_list|safe}},
+                },
+          }).render();
+        });
+      </script>
+      <!-- End Bar Chart -->
+
+    </div>
+  </div>
