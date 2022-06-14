@@ -165,7 +165,7 @@ def data_entry(request):
     current_user=request.user
     user_id=current_user.id
     name=healthworker.name
-    query="""SELECT COUNT(datesubmitted) FROM shws.health_worker_report WHERE monthname(datesubmitted)= %s and user_id= %s"""
+    query="""SELECT COUNT(datesubmitted) FROM health_worker_report WHERE strftime('%%m', date(datesubmitted))= %s and user_id= %s"""
     tuple1 = (x, user_id)
     c=connection.cursor()
 
@@ -231,17 +231,19 @@ def my_reports(request):
     isStaff=request.user.is_staff
     current_user=request.user
     user_id=current_user.id
-    query="""SELECT COUNT(datesubmitted) FROM shws.health_worker_report WHERE monthname(datesubmitted)= %s and user_id= %s"""
+    
+    query="""SELECT COUNT(datesubmitted) FROM health_worker_report WHERE strftime('%%m', date(datesubmitted))= %s and user_id= %s"""
+    
     tuple1 = (x, user_id)
     c=connection.cursor()
 
     c.execute(query,tuple1)
     ps=c.fetchone()
     ps=tup_to_int(ps)
-    
+    print(ps)
     if isStaff==0:
 
-        query1="""SELECT id FROM shws.health_worker_report WHERE monthname(datesubmitted)= %s and user_id= %s"""
+        query1="""SELECT id FROM health_worker_report WHERE strftime('%%m', date(datesubmitted))= %s and user_id= %s"""
         tuple2 = (x, user_id)
         cs=connection.cursor()
 
@@ -253,7 +255,7 @@ def my_reports(request):
             iid.remove(min(iid))
             
             for x in range(len(iid)):
-                query2="""DELETE FROM shws.health_worker_report WHERE id= %s"""
+                query2="""DELETE FROM health_worker_report WHERE id= %s"""
                 tuple3 = (iid[x])
                 cs1=connection.cursor()
 
@@ -433,7 +435,7 @@ def create_health_worker(request):
 @login_required(login_url='/login')
 @user_passes_test(user_check, login_url='/login')
 def edit_health_worker(request, pk):
-    query=""" SELECT dateofbirth FROM shws.health_worker_healthworker WHERE id= %s """
+    query=""" SELECT dateofbirth FROM health_worker_healthworker WHERE id= %s """
     tuple1 = [pk,]
     c=connection.cursor()
 

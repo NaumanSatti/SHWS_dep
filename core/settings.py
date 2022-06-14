@@ -80,22 +80,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
+
 DATABASES = {
-    'default': {
-        'ENGINE'  : 'django.db.backends.mysql', 
-        'NAME'    : 'shws',                 # <-- update here with your db name
-        'USER'    : 'root',                     # <-- update here with your username
-        'PASSWORD': 'nomi1122',              # <-- update here with your password
-        'HOST'    : 'localhost',                
-        'PORT'    : '3306',
-    }
+     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'shws.sqlite3',
+     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 
 # Password validation
