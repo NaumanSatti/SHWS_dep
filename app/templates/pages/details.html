@@ -34,8 +34,8 @@
 
         <div class="col-lg-12">
   
-          <div class="card">
-            <div class="card-body">
+          <div class="card fixed" style="width:100%;">
+            <div class="card fixed " style="width:100%;">
               <h5 class="card-title">Health Worker List Tables</h5>
               <p>This table shows all the list of health workers add in our system</p>
                <!-- success message  -->
@@ -74,9 +74,11 @@
                     <script>
   
                           x="HEllo WORLS";
-                          s='{{total}}';
-                          s1=parseInt(s);
-                          A="Hello"
+                          var s='{{total}}';
+                          var s1=parseInt(s);
+                          
+                          A="Hello";
+                          var x=0;
                           
                     </script>  
                       {% for hw in healthworkers%}
@@ -94,25 +96,28 @@
                         <td>{{hw.isRetired}}</td>
                         
                         <td>
-                          <a href="{% url 'view-health-worker' hw.pk %}" type="button" id="xyz" class="btn btn-primary"><i class="bi bi-eye"></i></a>
+                          <a href="{% url 'view-health-worker' hw.pk %}" type="button" id="xyz" class="btn btn-danger"><i class="bi bi-eye"></i></a>
                           <script>
-                            var a='{{hw.age}}'
-                            
-                            var b= parseInt(a)
-                            console.log(a)
-                            if(b>=59)
-                            {
-                              document.getElementById("xyz").setAttribute('id', A);
-                              document.getElementById("xyz").className="btn btn-danger";
-                            }
-      
+                           x='{{forloop.counter}}';
+                           var a='{{hw.age}}';
+                           var b= parseInt(a);
+                           console.log(b);
+                           if (b>=59){
+                            document.getElementById("xyz").setAttribute('id', x);
+
+                           }
                           </script>
                           
                         </td>
                         
                       
                       {% endfor %}
-                      
+                      <script>
+                         var text = s1.toString();
+                         document.getElementById(text).className='btn btn-primary';   
+                          
+                            
+                      </script>
                       
                       </tr>
                       
