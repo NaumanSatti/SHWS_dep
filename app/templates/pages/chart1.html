@@ -32,6 +32,135 @@
     </div>
   </div>
   
+<!-- FLIP CARD -->
+
+<div class="container">
+  <div class="row">
+  <div class="col-md-12 col-lg-6">
+    <div class="card-header-title">
+      
+      <div class="card-title"> No. of New born Started Breast Feeding Within 1 hr. </div>
+      
+  </div>    
+    <div class="flip">
+          <div class="card"> 
+            
+            <div class="face front"> 
+              <div id="Bfeeding">
+                
+              </div>
+              
+            </div> 
+
+            
+            <div class="face back"> 
+              <div class="card-title"> TABULAR VIEW (DISTRICT WISE) </div>
+             
+              <div class="scroll-area-md">
+                <div class="scrollbar-container">
+                    <table class="table table-striped">
+                        <thead class="thead-inverse">
+                            <tr>
+                              <th scope="col">Sr. No</th>
+                              <th scope="col">Districts</th>
+                              <th scope="col">No. of New born Started Breast Feeding Within 1 hr</th>
+                              <th scope="col">No. of Live Births</th>
+                              <th scope="col">% No. of New born Started Breast Feeding Within 1 hr</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            
+                            {% for result in bfData %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ result.3 }}</td>
+                                
+                                <td>{{ result.0 }}</td>
+                                
+                                <td>{{ result.1 }}</td>
+                                <td>{{ result.2 }}%</td>
+                                
+                            </tr>
+                            
+                            {% endfor %}
+
+                         </tbody>
+
+                    </table>
+                </div>
+            </div>
+            </div>
+          </div>	 
+        </div>
+      </div>
+    
+    
+      <div class="col-md-12 col-lg-6">
+        <div class="card-header-title">
+          
+          <div class="card-title"> LIVE BIRTHS VS. MATERNAL DEATHS VS. INFANT DEATHS
+          </div>
+      </div>    
+        <div class="flip">
+              <div class="card"> 
+                
+                <div class="face front"> 
+                  <div id="live4"></div>
+                </div> 
+                <div class="face back"> 
+                  <div class="card-title"> TABULAR VIEW (DISTRICT WISE) </div>
+                 
+                  <div class="scroll-area-md">
+                    <div class="scrollbar-container">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">Sr. No</th>
+                              <th scope="col">Districts</th>
+                              <th scope="col">Live Births</th>
+                              <th scope="col">Maternal Deaths</th>
+                              <th scope="col">Infant Deaths</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            
+                            {% for result in chartlist %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ result.3 }}</td>
+                                
+                                <td>{{ result.1 }}</td>
+                                
+                                <td>{{ result.0 }}</td>
+                                <td>{{ result.2 }}</td>
+                                
+                            </tr>
+                            
+                            {% endfor %}
+
+                         </tbody>
+
+    
+                        </table>
+                    </div>
+                </div>
+                </div>
+              </div>	 
+            </div>
+          </div>
+        
+    
+    
+    </div>
+    </div>
+
+
+
+
+
+
+
+
   
   <div class="row">
     <div class="col-md-12 col-lg-6">
@@ -49,7 +178,7 @@
                         <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
                             <div class="widget-chat-wrapper-outer">
                                 <div class="widget-chart-wrapper widget-chart-wrapper-lg opacity-10 m-0">
-                                    <div id="Bfeeding"></div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -155,7 +284,104 @@
   
   
     <script>
-  
+  document.addEventListener("DOMContentLoaded", () => {
+                    new ApexCharts(document.querySelector("#live4"), {
+        
+                        
+
+                        series: [{
+          name: 'Live Births',
+          type: 'bar',
+          data: {{no_of_live_births}}
+        },
+    
+        {
+          name: 'Maternal Deaths',
+          type: 'area',
+          data: {{maternal_deaths}}
+        },
+    
+    {
+      name: 'Infants Deaths',
+      type: 'line',
+      data: {{infants_deaths}}
+    }],
+          annotations: {
+          points: [{
+            x: 'Bananas',
+            seriesIndex: 0,
+            label: {
+              borderColor: '#775DD0',
+              offsetY: 0,
+              style: {
+                color: '#fff',
+                background: '#775DD0',
+              },
+              text: 'Bananas are good',
+            }
+          }]
+        },
+        chart: {
+          height: 350,
+          type: 'line',
+          stacked: false,
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 10,
+            columnWidth: '50%',
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          width: 2
+        },
+        
+        grid: {
+          row: {
+            colors: ['#fff', '#f2f2f2']
+          }
+        },
+        xaxis: {
+          labels: {
+            rotate: -45
+          },
+          categories: {{districts_list|safe}},
+          tickPlacement: 'on'
+        },
+        yaxis: {
+          title: {
+            text: 'Live Births vs. Maternal Deaths vs. Infant Deaths',
+          },
+        },
+        fill: {
+          type: 'gradient',
+          gradient: {
+            shade: 'light',
+            type: "horizontal",
+            shadeIntensity: 0.25,
+            gradientToColors: undefined,
+            inverseColors: true,
+            opacityFrom: 0.85,
+            opacityTo: 0.85,
+            stops: [50, 0, 100]
+          },
+        }
+
+
+
+
+
+
+
+                    }).render();
+                  });
+
+
+
+
   
   document.addEventListener("DOMContentLoaded", () => {
                       new ApexCharts(document.querySelector("#line11-adwords"), {

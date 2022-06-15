@@ -82,7 +82,7 @@
                                     <div class="card-header-tab card-header-tab-animation card-header">
                                         <div class="card-header-title">
                                             <i class="header-icon lnr-apartment icon-gradient bg-love-kiss"> </i>
-                                            Live Births vs. Maternal Deaths vs. Infant Deaths District Wise
+                                            Live Births vs. Maternal Deaths vs. Infant Deaths
                                         </div>
                                         
                                     </div>
@@ -92,7 +92,7 @@
                                                 <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
                                                     <div class="widget-chat-wrapper-outer">
                                                         <div class="widget-chart-wrapper widget-chart-wrapper-lg opacity-10 m-0">
-                                                            <div id="live"></div>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -100,33 +100,7 @@
                                                 <div class="scroll-area-lg">
                                                     <div class="scrollbar-container">
                                                         <table class="table">
-                                                            <thead>
-                                                                <tr>
-                                                                  <th scope="col">Sr. No</th>
-                                                                  <th scope="col">Districts</th>
-                                                                  <th scope="col">Live Births</th>
-                                                                  <th scope="col">Maternal Deaths</th>
-                                                                  <th scope="col">Infant Deaths</th>
-                                                                </tr>
-                                                              </thead>
-                                                              <tbody>
-                                                                
-                                                                {% for result in chartlist %}
-                                                                <tr>
-                                                                    <td>{{ forloop.counter }}</td>
-                                                                    <td>{{ result.3 }}</td>
-                                                                    
-                                                                    <td>{{ result.1 }}</td>
-                                                                    
-                                                                    <td>{{ result.0 }}</td>
-                                                                    <td>{{ result.2 }}</td>
-                                                                    
-                                                                </tr>
-                                                                
-                                                                {% endfor %}
-
-                                                             </tbody>
-
+                                                            
                                                         </table>
                                                     </div>
                                                 </div>
