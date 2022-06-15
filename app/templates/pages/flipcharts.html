@@ -1,0 +1,633 @@
+<div class="row">
+    <div class="col-md-6 col-xl-12">
+        <div class="card mb-3 widget-content bg-night-fade">
+            <div class="widget-content-outer">
+                <div class="widget-content-wrapper">
+                    <div class="widget-content-left">
+                        <div class="widget-numbers text-info">Note: This Section Contains Charts which show Tabular View on Double Click.</div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<!-- FLIP CARD row 1-->
+
+<div class="container">
+    <div class="row">
+    <div class="col-md-12 col-lg-6">
+      <div class="card-header-title">
+        
+        <div class="card-title"> Family Planning Clients </div>
+        
+    </div>    
+      <div class="flip">
+            <div class="card"> 
+              
+              <div class="face front"> 
+                <div id="Fplanning">
+                  
+                </div>
+                
+              </div> 
+  
+              
+              <div class="face back"> 
+                <div class="card-title"> TABULAR VIEW (DISTRICT WISE) </div>
+               
+                <div class="scroll-area-md">
+                  <div class="scrollbar-container">
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">Sr. No</th>
+                            <th scope="col">Districts</th>
+                            <th scope="col">New Family Planning Clients</th>
+                            <th scope="col">Follow up Family Planning Clients</th>
+                            <th scope="col">Total Family Planning Clients </th>
+                            <th scope="col">Eligible Couples </th>
+                            <th scope="col">% Family Planning Clients </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          
+                          {% for result in fam %}
+                          <tr>
+                              <td>{{ forloop.counter }}</td>
+                              <td>{{ result.0 }}</td>
+                              
+                              <td>{{ result.1 }}</td>
+                              <td>{{ result.2 }}</td>
+                              <td>{{ result.3 }}</td>
+                              <td>{{ result.4 }}</td>
+                              <td>{{ result.5 }}</td>
+                              
+                              
+                          </tr>
+                          
+                          {% endfor %}
+
+                       </tbody>
+
+  
+                      </table>
+                 
+                  </div>
+              </div>
+              </div>
+            </div>	 
+          </div>
+        </div>
+      
+      
+        <div class="col-md-12 col-lg-6">
+          <div class="card-header-title">
+            
+            <div class="card-title"> Condom Users.
+            </div>
+        </div>    
+          <div class="flip">
+                <div class="card"> 
+                  
+                  <div class="face front"> 
+                    <div id="condom"></div>
+                  </div> 
+                  <div class="face back"> 
+                    <div class="card-title"> TABULAR VIEW (DISTRICT WISE) </div>
+                   
+                    <div class="scroll-area-md">
+                      <div class="scrollbar-container">
+                          <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th scope="col">Sr. No</th>
+                                <th scope="col">Districts</th>
+                                <th scope="col">Total Condom Users</th>
+                                <th scope="col">Persons Supplied Condoms</th>
+                                <th scope="col">% Condom Users </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              
+                              {% for result in cond %}
+                              <tr>
+                                  <td>{{ forloop.counter }}</td>
+                                  <td>{{ result.0 }}</td>
+                                  
+                                  <td>{{ result.1 }}</td>
+                                  
+                                  <td>{{ result.3 }}</td>
+                                  <td>{{ result.2 }}</td>
+                                  
+                              </tr>
+                              
+                              {% endfor %}
+  
+                           </tbody>
+  
+      
+                          </table>
+                      </div>
+                  </div>
+                  </div>
+                </div>	 
+              </div>
+            </div>
+
+
+<!-- FLIP CARD row 2-->
+
+<div class="container">
+    <div class="row">
+    <div class="col-md-12 col-lg-6">
+      <div class="card-header-title">
+        
+        <div class="card-title"> Family Planning Modern Method Users </div>
+        
+    </div>    
+      <div class="flip">
+            <div class="card"> 
+              
+              <div class="face front"> 
+                <div id="modern">
+                  
+                </div>
+                
+              </div> 
+  
+              
+              <div class="face back"> 
+                <div class="card-title"> TABULAR VIEW (DISTRICT WISE) </div>
+               
+                <div class="scroll-area-md">
+                  <div class="scrollbar-container">
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">Sr. No</th>
+                            <th scope="col">Districts</th>
+                            <th scope="col">New Modern Method Users</th>
+                            <th scope="col">Other Modern Method Users</th>
+                            <th scope="col">Total Modern Method Users </th>
+                            <th scope="col">Eligible Couples </th>
+                            <th scope="col">% Modern Method Users  </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          
+                          {% for result in mod %}
+                          <tr>
+                              <td>{{ forloop.counter }}</td>
+                              <td>{{ result.0 }}</td>
+                              
+                              <td>{{ result.1 }}</td>
+                              <td>{{ result.2 }}</td>
+                              <td>{{ result.3 }}</td>
+                              <td>{{ result.4 }}</td>
+                              <td>{{ result.5 }}</td>
+                              
+                              
+                          </tr>
+                          
+                          {% endfor %}
+
+                       </tbody>
+
+  
+                      </table>
+                 
+                  </div>
+              </div>
+              </div>
+            </div>	 
+          </div>
+        </div>
+      
+      
+        <div class="col-md-12 col-lg-6">
+          <div class="card-header-title">
+            
+            <div class="card-title"> Condom Users.
+            </div>
+        </div>    
+          <div class="flip">
+                <div class="card"> 
+                  
+                  <div class="face front"> 
+                    <div id="CHS"></div>
+                  </div> 
+                  <div class="face back"> 
+                    <div class="card-title"> TABULAR VIEW (DISTRICT WISE) </div>
+                   
+                    <div class="scroll-area-md">
+                      <div class="scrollbar-container">
+                          <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th scope="col">Sr. No</th>
+                                <th scope="col">Districts</th>
+                                <th scope="col">Total Condom Users</th>
+                                <th scope="col">Persons Supplied Condoms</th>
+                                <th scope="col">% Condom Users </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              
+                              {% for result in cond %}
+                              <tr>
+                                  <td>{{ forloop.counter }}</td>
+                                  <td>{{ result.0 }}</td>
+                                  
+                                  <td>{{ result.1 }}</td>
+                                  
+                                  <td>{{ result.3 }}</td>
+                                  <td>{{ result.2 }}</td>
+                                  
+                              </tr>
+                              
+                              {% endfor %}
+  
+                           </tbody>
+  
+      
+                          </table>
+                      </div>
+                  </div>
+                  </div>
+                </div>	 
+              </div>
+            </div>
+
+
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+                    new ApexCharts(document.querySelector("#condom"), {
+        
+                        
+
+                        series: [{
+          name: 'Users Supplied Condoms',
+          color:'#de6262',
+          type: 'area',
+          data: {{supplied_condom}}
+        },
+    
+        {
+          name: 'Total Condom Users',
+          color:'#bdc3c7',
+          type: 'column',
+          data: {{condomUsers}}
+        }],
+          annotations: {
+          points: [{
+            x: 'Bananas',
+            seriesIndex: 0,
+            label: {
+              borderColor: '#775DD0',
+              offsetY: 0,
+              style: {
+                color: '#fff',
+                background: '#775DD0',
+              },
+              text: 'Bananas are good',
+            }
+          }]
+        },
+        chart: {
+          height: 350,
+          type: 'line',
+          stacked: false,
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 10,
+            columnWidth: '50%',
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          width: 2
+        },
+        
+        grid: {
+          row: {
+            colors: ['#fff', '#f2f2f2']
+          }
+        },
+        xaxis: {
+          labels: {
+            rotate: -45
+          },
+          categories: {{districts_list|safe}},
+          tickPlacement: 'on'
+        },
+        yaxis: {
+          title: {
+            text: 'Users Supplied Condoms vs. Total Condom Users',
+          },
+        },
+        fill: {
+          type: 'gradient',
+          gradient: {
+            shade: 'light',
+            type: "horizontal",
+            shadeIntensity: 0.25,
+            gradientToColors: undefined,
+            inverseColors: true,
+            opacityFrom: 0.85,
+            opacityTo: 0.85,
+            stops: [50, 0, 100]
+          },
+        }
+
+
+
+
+
+
+
+                    }).render();
+                  });
+
+
+                  document.addEventListener("DOMContentLoaded", () => {
+                      new ApexCharts(document.querySelector("#Fplanning"), {
+                        
+        series: [{
+          name: 'New Family Planning Clients',
+          type: 'column',
+          data: {{newfamilyplanning}},
+          color:'#ffc3a0'
+        }, {
+          name: 'Follow up Family Planning Clients',
+          type: 'area',
+          data: {{followupfamplanning}},
+          color:'#6dd5ed'
+        },
+        {
+          name: 'Total Family Planning Clients',
+          type: 'bar',
+          data: {{totalfamplanning}},
+          color:'#753a88'
+        },
+        {
+          name: 'Eligible Couples',
+          type: 'bar',
+          data: {{eligible_couples}},
+          color:'#bdc3c7'
+        }],
+          chart: {
+          height: 350,
+          type: 'line',
+          stacked: false,
+        },
+        stroke: {
+          width: [0, 2, 5],
+          curve: 'smooth'
+        },
+        plotOptions: {
+          bar: {
+            columnWidth: '50%'
+          }
+        },
+        
+        fill: {
+          opacity: [0.85, 0.25, 1],
+          gradient: {
+            inverseColors: false,
+            shade: 'light',
+            type: "vertical",
+            opacityFrom: 0.85,
+            opacityTo: 0.55,
+            stops: [0, 100, 100, 100]
+          }
+        },
+        labels: {{districts_list|safe}},
+        markers: {
+          size: 0
+        },
+        xaxis: {
+         
+        },
+        yaxis: {
+          title: {
+            text: 'Total',
+          },
+          min: 0
+        },
+        tooltip: {
+          shared: true,
+          intersect: false,
+          y: {
+            formatter: function (y) {
+              if (typeof y !== "undefined") {
+                return "Total: " + y.toFixed(0)  ;
+              }
+              return y;
+        
+            }
+          }
+        }
+        
+                      }).render();
+                    });
+
+
+    
+                    document.addEventListener("DOMContentLoaded", () => {
+                    new ApexCharts(document.querySelector("#CHS"), {
+                      chart: {
+  height: 328,
+  width:'100%',
+  type: 'line',
+  zoom: {
+    enabled: false
+  },
+  dropShadow: {
+    enabled: true,
+    top: 3,
+    left: 2,
+    blur: 4,
+    opacity: 1,
+  }
+},
+stroke: {
+  curve: 'smooth',
+  width: 2
+},
+//colors: ["#3F51B5", '#2196F3'],
+series: [{
+    name: "Infant Death",
+    data: {{infants_deaths}}
+  },
+  {
+    name: "Live Birth",
+    data:{{no_of_live_births}}
+  },
+  {
+    name: "IMR",
+    data: {{imr}}
+  }
+],
+title: {
+  text: 'Infant Mortality Rate',
+  align: 'left',
+  offsetY: 25,
+  offsetX: 20
+},
+subtitle: {
+  text: 'Statistics',
+  offsetY: 55,
+  offsetX: 20
+},
+markers: {
+  size: 6,
+  strokeWidth: 0,
+  hover: {
+    size: 9
+  }
+},
+grid: {
+  show: true,
+  padding: {
+    bottom: 0
+  }
+},
+
+xaxis: {
+    categories: {{districts_list|safe}},
+    title: {
+          text: 'Districts'
+        },
+  tooltip: {
+    enabled: false
+  }
+},
+legend: {
+  position: 'top',
+  horizontalAlign: 'right',
+  offsetY: -20
+}
+                    }).render();
+                  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+                 new ApexCharts(document.querySelector("#modern"), {
+                   chart: {
+height: 328,
+width:'100%',
+type: 'line',
+zoom: {
+ enabled: false
+},
+dropShadow: {
+ enabled: true,
+ top: 3,
+ left: 2,
+ blur: 4,
+ opacity: 1,
+}
+},
+stroke: {
+curve: 'smooth',
+width: 2
+},
+
+series: [{
+ name: "New Modern Method Users",
+ colors:'#ffa751',
+ data: {{no_of_modernused}}
+},
+{
+ name: "Other Modern Method Users",
+ color:'#2c3e50',
+ data:{{othermodernused}}
+},
+{
+ name: "Total Modern Method Users",
+ color:'#b92b27',
+ data: {{totalmodernused}}
+},
+{
+ name: "Eligible Couples",
+ color:'#f5af19',
+ data: {{eligible_couples}}
+}
+],
+title: {
+text: 'FAMILY PLANNING MODERN METHOD USED',
+align: 'left',
+offsetY: 25,
+offsetX: 20
+},
+subtitle: {
+text: 'Statistics',
+offsetY: 55,
+offsetX: 20
+},
+markers: {
+size: 6,
+strokeWidth: 0,
+hover: {
+ size: 9
+}
+},
+grid: {
+show: true,
+padding: {
+ bottom: 0
+}
+},
+
+xaxis: {
+ categories: {{districts_list|safe}},
+ title: {
+       text: 'Districts'
+     },
+tooltip: {
+ enabled: false
+}
+},
+legend: {
+position: 'top',
+horizontalAlign: 'right',
+offsetY: -20
+}
+   }).render();
+               });
+
+</script>
+
+
+
+
+
+
+
+            
